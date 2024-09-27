@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc -p .",
     "dev": "nodemon",
-    "start": "node dist/index.js",
+    "start": "ts-node dist/index.js",
     "db": "prisma db push --schema src/models/schema",
     "client": "prisma generate --schema=src/models/schema"
   },

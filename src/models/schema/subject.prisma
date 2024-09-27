@@ -1,0 +1,18 @@
+model CollegeSubject {
+    id          String             @id @default(auto()) @map("_id") @db.ObjectId
+    title       String
+    code        String             @unique
+    description String?
+    unit        Int
+    type        CollegeSubjectType
+    created_at  DateTime           @default(now())
+    updated_at  DateTime           @updatedAt
+    deleted_at  DateTime?
+
+    @@map("college_subjects")
+}
+
+enum CollegeSubjectType {
+    minor
+    major
+}

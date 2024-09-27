@@ -1,0 +1,12 @@
+model CollegeStudent {
+    id         String    @id @default(auto()) @map("_id") @db.ObjectId
+    firstName  String    @map("first_name")
+    middleName String    @map("middle_name")
+    lastName   String    @map("last_name")
+    email      String    @unique
+    created_at DateTime  @default(now())
+    updated_at DateTime  @updatedAt
+    deleted_at DateTime?
+
+    @@map("college_students")
+}

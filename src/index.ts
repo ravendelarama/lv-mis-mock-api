@@ -27,6 +27,7 @@ app.use(compression())
 app.use('/college', collegeStudentRouter);
 
 // to prevent render hosting server termination
+app.get('/', (req, res) => { res.send("Hello Server!") });
 awakeServer();
 
 const PORT = process.env.PORT || 3000;

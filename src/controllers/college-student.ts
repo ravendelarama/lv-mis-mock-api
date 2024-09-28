@@ -1,6 +1,7 @@
 import { Router } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { db } from "../models";
+import { response } from "../utils/response";
 import { seed } from "../utils/seeder";
 
 export const router = Router();
@@ -19,23 +20,15 @@ export const getCollegeStudents = expressAsyncHandler(async (req, res) => {
             take
         });
 
-        res.status(200).json({
-            success: true,
-            message: null,
-            data,
+        response(res, 200, true, null, data, {
             pagination: {
                 page,
                 take,
-                skip,
+                skip
             }
         });
-    } catch(e) {
-        res.status(400).json({
-            success: false,
-            message: null,
-            // @ts-ignore
-            data: e.message,
-        });
+    } catch {
+        response(res, 500, false, "Internal Server Error", null);
     }
 });
 
@@ -48,16 +41,8 @@ export const seedCollegeStudents = expressAsyncHandler(async (req, res) => {
             data: newCollegeStudents
         });
 
-        res.status(201).json({
-            success: true,
-            message: null,
-            data
-        });
+        response(res, 201, true, null, data);
     } catch(e) {
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error",
-            data: null,
-        });
+        response(res, 500, false, "Internal Server Error", null);
     }
 })

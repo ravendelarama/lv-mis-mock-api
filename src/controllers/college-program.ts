@@ -1,5 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import { db } from "../models";
+import { response } from "../utils/response";
 
 export const getCollegePrograms = expressAsyncHandler(async (req, res) => {
     try {
@@ -17,11 +18,9 @@ export const getCollegePrograms = expressAsyncHandler(async (req, res) => {
             message: null,
             data,
         });
+
+        response(res, 200, true, null, data);
     } catch {
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error",
-            data: null
-        })
+        response(res, 500, false, "Internal Server Error", null);
     }
 });

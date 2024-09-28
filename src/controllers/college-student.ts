@@ -1,6 +1,7 @@
 import { Router } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { db } from "../models";
+import { seed } from "../utils/seeder";
 
 export const router = Router();
 
@@ -36,3 +37,26 @@ export const getCollegeStudents = expressAsyncHandler(async (req, res) => {
         });
     }
 });
+
+export const seedCollegeStudents = expressAsyncHandler(async (req, res) => {
+    try {
+        const count = req.query.count ? Number(req.query.count): 1;
+        const newCollegeStudents = await seed.student(count);
+
+        const data = await db.collegeStudent.createMany({
+            data: newCollegeStudents
+        });
+
+        res.status(201).json({
+            success: true,
+            message: null,
+            data
+        });
+    } catch(e) {
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+            data: null,
+        });
+    }
+})

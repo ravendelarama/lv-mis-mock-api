@@ -1,4 +1,5 @@
 export {
-    getCollegeStudents
+    getCollegeStudents,
+    seedCollegeStudents
 } from "./college-student";
 

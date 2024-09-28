@@ -1,17 +1,16 @@
-model CollegeSubject {
+model CollegeProgram {
     id          String    @id @default(auto()) @map("_id") @db.ObjectId
     title       String
     code        String
     description String
-    unit        Int
-    major       String
+    duration    Int
+    board       Boolean
     createdAt   DateTime  @default(now())
     updatedAt   DateTime  @updatedAt
     deletedAt   DateTime?
 
     // Relations
-    instructorSubjects        CollegeInstructorSubject[]
-    instructorStudentSubjects CollegeInstructorStudentSubject[]
+    students CollegeStudentProgram[]
 
-    @@map("college_subjects")
+    @@map("college_programs")
 }

@@ -1,12 +1,18 @@
 model CollegeStudent {
     id         String    @id @default(auto()) @map("_id") @db.ObjectId
-    firstName  String    @map("first_name")
-    middleName String    @map("middle_name")
-    lastName   String    @map("last_name")
+    image      String?
+    firstName  String
+    middleName String
+    lastName   String
     email      String    @unique
-    created_at DateTime  @default(now())
-    updated_at DateTime  @updatedAt
-    deleted_at DateTime?
+    irregular  Boolean   @default(false)
+    createdAt  DateTime  @default(now())
+    updatedAt  DateTime  @updatedAt
+    deletedAt  DateTime?
+
+    // Relations
+    programs                  CollegeStudentProgram[]
+    instructorStudentSubjects CollegeInstructorStudentSubject[]
 
     @@map("college_students")
 }

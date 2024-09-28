@@ -1,0 +1,15 @@
+model CollegeInstructorSubject {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  instructorId String    @db.ObjectId
+  subjectId    String    @db.ObjectId
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+
+  // Relations
+  instructor CollegeInstructor @relation(fields: [instructorId], references: [id])
+  subject    CollegeSubject    @relation(fields: [subjectId], references: [id])
+
+  @@unique([instructorId, subjectId])
+  @@map("college_instructor_subjects")
+}

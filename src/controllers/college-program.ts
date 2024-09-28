@@ -12,14 +12,15 @@ export const getCollegePrograms = expressAsyncHandler(async (req, res) => {
             skip,
             take
         });
-        
-        res.status(200).json({
-            success: true,
-            message: null,
-            data,
-        });
 
-        response(res, 200, true, null, data);
+        response(res, 200, true, null, data, {
+            pagination: {
+                page,
+                take,
+                skip,
+                count: data.length
+            }
+        });
     } catch {
         response(res, 500, false, "Internal Server Error", null);
     }

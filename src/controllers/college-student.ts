@@ -24,7 +24,8 @@ export const getCollegeStudents = expressAsyncHandler(async (req, res) => {
             pagination: {
                 page,
                 take,
-                skip
+                skip,
+                count: data.length
             }
         });
     } catch {

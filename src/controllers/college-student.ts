@@ -10,8 +10,8 @@ export const getCollegeStudents = expressAsyncHandler(async (req, res) => {
         // TODO
         // reusable response utilities
 
-        const take = Number(req.query.take) || 10;
-        const page = Number(req.query.page) || 1;
+        const take = req.query.take ? Number(req.query.take): 10;
+        const page = req.query.page ? Number(req.query.page): 1;
         const skip = (page - 1) * take || 0;
         
         const data = await db.collegeStudent.findMany({
@@ -29,11 +29,12 @@ export const getCollegeStudents = expressAsyncHandler(async (req, res) => {
                 skip,
             }
         });
-    } catch {
+    } catch(e) {
         res.status(400).json({
             success: false,
             message: null,
-            data: null,
+            // @ts-ignore
+            data: e.message,
         });
     }
 });

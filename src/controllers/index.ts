@@ -1,5 +1,6 @@
 export {
     getCollegeStudents,
-    seedCollegeStudents
+    seedCollegeStudents,
+    getCollegeStudentByIdAndIdType
 } from "./college-student";
 

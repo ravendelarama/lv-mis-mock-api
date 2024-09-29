@@ -9,16 +9,16 @@ export const seed = {
       const middleName = faker.person.middleName();
       const lastName = faker.person.lastName();
 
-      const studentSchoolId = `21-${String(i).padStart(
-        5,
-        "0"
-      )}${faker.string.alpha({ length: 3, casing: "upper" })}`;
+      const schoolId = `21-${String(i).padStart(5, "0")}${faker.string.alpha({
+        length: 3,
+        casing: "upper",
+      })}`;
 
       const newStudent = {
         firstName,
         middleName,
         lastName,
-        studentSchoolId,
+        schoolId,
         email: `${firstName.toLowerCase()}${lastName.toLowerCase()}@student.laverdad.edu.ph`,
         irregular: false,
       };

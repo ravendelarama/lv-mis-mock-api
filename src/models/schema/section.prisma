@@ -1,0 +1,16 @@
+model Section {
+    id        String    @id @default(auto()) @map("_id") @db.ObjectId
+    programId String    @db.ObjectId
+    level     Int
+    code      String
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
+
+    // Relations
+    program CollegeProgram @relation(fields: [programId], references: [id])
+
+    @@map("college_sections")
+}
+
+

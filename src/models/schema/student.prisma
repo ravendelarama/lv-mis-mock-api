@@ -1,14 +1,15 @@
 model CollegeStudent {
-    id         String    @id @default(auto()) @map("_id") @db.ObjectId
-    image      String?
-    firstName  String
-    middleName String
-    lastName   String
-    email      String    @unique
-    irregular  Boolean   @default(false)
-    createdAt  DateTime  @default(now())
-    updatedAt  DateTime  @updatedAt
-    deletedAt  DateTime?
+    id              String    @id @default(auto()) @map("_id") @db.ObjectId
+    image           String?
+    firstName       String
+    middleName      String
+    lastName        String
+    studentSchoolId String   
+    email           String    @unique
+    irregular       Boolean   @default(false)
+    createdAt       DateTime  @default(now())
+    updatedAt       DateTime  @updatedAt
+    deletedAt       DateTime?
 
     // Relations
     programs                  CollegeStudentProgram[]

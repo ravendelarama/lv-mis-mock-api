@@ -68,9 +68,9 @@ export const getCollegeStudentByIdAndIdType = expressAsyncHandler(
         case "id":
           criterion = { id: id };
           break;
-        case "studentSchoolId":
+        case "schoolId":
           criterion = {
-            studentSchoolId: id,
+            schoolId: id,
           };
           break;
         default:
@@ -78,7 +78,7 @@ export const getCollegeStudentByIdAndIdType = expressAsyncHandler(
             res,
             400,
             false,
-            "Invalid request parameter 'idType'. Must be 'id' or'studentSchoolId'",
+            "Invalid request parameter 'idType'. Must be 'id' or'schoolId'",
             null
           );
       }
@@ -90,6 +90,23 @@ export const getCollegeStudentByIdAndIdType = expressAsyncHandler(
       }
 
       response(res, 200, true, null, student);
+    } catch (e) {
+      response(res, 500, false, "Internal Server Error", null);
+    }
+  }
+);
+
+export const truncateCollegeStudentsCollection = expressAsyncHandler(
+  async (req, res) => {
+    try {
+      await db.collegeStudent.deleteMany({});
+      response(
+        res,
+        200,
+        true,
+        "Students collection truncated successfully",
+        null
+      );
     } catch (e) {
       response(res, 500, false, "Internal Server Error", null);
     }

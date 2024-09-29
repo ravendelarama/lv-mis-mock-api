@@ -1,6 +1,7 @@
 export {
     getCollegeStudents,
     seedCollegeStudents,
-    getCollegeStudentByIdAndIdType
+    getCollegeStudentByIdAndIdType,
+    truncateCollegeStudentsCollection
 } from "./college-student";
 

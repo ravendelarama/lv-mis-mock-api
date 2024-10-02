@@ -15,6 +15,7 @@ model CollegeStudent {
     programs                  CollegeStudentProgram[]
     instructorStudentSubjects CollegeInstructorStudentSubject[]
     studentSections           CollegeStudentSection[]
+    studentSubjects           CollegeStudentSubject[]
 
     @@map("college_students")
 }

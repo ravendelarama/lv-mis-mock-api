@@ -11,6 +11,7 @@ model CollegeSubject {
 
     // Relations
     instructorSubjects        CollegeInstructorSubject[]
+    studentSubjects           CollegeStudentSubject[]
     instructorStudentSubjects CollegeInstructorStudentSubject[]
 
     @@map("college_subjects")

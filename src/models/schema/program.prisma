@@ -11,7 +11,7 @@ model CollegeProgram {
 
     // Relations
     students CollegeStudentProgram[]
-    sections Section[] // One CollegeProgram can have many Sections
+    sections CollegeSection[] // One CollegeProgram can have many Sections
 
     @@map("college_programs")
 }

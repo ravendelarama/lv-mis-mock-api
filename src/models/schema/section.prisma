@@ -1,4 +1,4 @@
-model Section {
+model CollegeSection {
     id        String    @id @default(auto()) @map("_id") @db.ObjectId
     programId String    @db.ObjectId
     level     Int
@@ -8,9 +8,8 @@ model Section {
     deletedAt DateTime?
 
     // Relations
-    program CollegeProgram @relation(fields: [programId], references: [id])
+    program         CollegeProgram          @relation(fields: [programId], references: [id])
+    studentSections CollegeStudentSection[]
 
     @@map("college_sections")
 }
-
-

@@ -4,7 +4,7 @@ model CollegeSubject {
     code        String
     description String
     unit        Int
-    major       String
+    major       Boolean
     createdAt   DateTime  @default(now())
     updatedAt   DateTime  @updatedAt
     deletedAt   DateTime?

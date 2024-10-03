@@ -2,7 +2,7 @@ model CollegeStudent {
     id         String    @id @default(auto()) @map("_id") @db.ObjectId
     image      String?
     firstName  String
-    middleName String
+    middleName String?
     lastName   String
     schoolId   String
     email      String    @unique

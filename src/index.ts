@@ -7,6 +7,7 @@ import http from "http";
 import { awakeServer } from "./jobs";
 import { collegeStudentRouter } from "./routes";
 import { db } from "./models";
+import { response } from "./utils/response";
 
 dotenv.config();
 
@@ -41,20 +42,18 @@ app.get("/try", async (req, res) => {
     where: {
       studentSections: {
         some: {
-          sectionId: "sectionIdHere", // Replace with the actual section ID
+          sectionId: "66f9471b33e226fd2e700d61", // Replace with the actual section ID
         },
       },
       studentSubjects: {
         some: {
-          subjectId: "subjectIdHere", // Replace with the actual subject ID
+          subjectId: "66f9522a33e226fd2e700d7f", // Replace with the actual subject ID
         },
       },
     },
-    include: {
-      studentSections: true, // To include the section details in the result
-      studentSubjects: true, // To include the subject details in the result
-    },
   });
+
+  response(res, 200, true, null, studentsTakingSubjectInSection);
 });
 awakeServer();
 

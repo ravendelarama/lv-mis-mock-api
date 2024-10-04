@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import express from "express";
 import http from "http";
 import { awakeServer } from "./jobs";
-import { collegeStudentRouter, collegeSubjectRouter } from "./routes";
+import { collegeInstructorRouter, collegeStudentRouter, collegeSubjectRouter } from "./routes";
 import { db } from "./models";
 import { response } from "./utils/response";
 
@@ -30,7 +30,7 @@ app.use(
 app.use(compression());
 
 // routers
-app.use("/college", collegeStudentRouter, collegeSubjectRouter);
+app.use("/college", collegeStudentRouter, collegeSubjectRouter, collegeInstructorRouter);
 
 // to prevent render hosting server termination
 app.get("/", (req, res) => {

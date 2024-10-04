@@ -118,6 +118,17 @@ export const getCollegeInstructorBySubjectId = expressAsyncHandler(
   async (req, res) => {
     try {
       const { subjectId } = req.params;
+
+      if (!subjectId) {
+        return response(
+          res,
+          400,
+          false,
+          "Invalid request parameters. Contact dev team.",
+          null
+        );
+      }
+
       const data = await db.collegeInstructor.findFirst({
         where: {
           subjects: {

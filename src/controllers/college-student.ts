@@ -1,10 +1,8 @@
-import { Router } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { db } from "../models";
 import { response } from "../utils/response";
 import { seed } from "../utils/seeder";
 
-export const router = Router();
 
 export const getCollegeStudents = expressAsyncHandler(async (req, res) => {
   try {
@@ -61,6 +59,8 @@ export const getCollegeStudentByIdAndIdType = expressAsyncHandler(
           null
         );
       }
+
+      console.log(id, idType);
 
       let criterion;
 

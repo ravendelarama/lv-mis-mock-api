@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import express from "express";
 import http from "http";
 import { awakeServer } from "./jobs";
-import { collegeStudentRouter } from "./routes";
+import { collegeStudentRouter, collegeSubjectRouter } from "./routes";
 import { db } from "./models";
 import { response } from "./utils/response";
 
@@ -16,7 +16,7 @@ const server = http.createServer(app);
 
 app.use(
   cors({
-    origin: [process.env.APP_DEV_URL!, process.env.APP_PROD_URL!],
+    origin: [process.env.APP_DEV_URL!, process.env.APP_PROD_URL!, 'http://localhost:4200'],
     credentials: true,
   })
 );
@@ -30,7 +30,7 @@ app.use(
 app.use(compression());
 
 // routers
-app.use("/college", collegeStudentRouter);
+app.use("/college", collegeStudentRouter, collegeSubjectRouter);
 
 // to prevent render hosting server termination
 app.get("/", (req, res) => {

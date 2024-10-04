@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { getCollegeSectionsBySubjectId, getCollegeStudentsBySubjectId, getSubjectById, getSubjects } from "../controllers";
+import { getCollegeSectionsBySubjectId, getCollegeStudentsBySubjectId, getCollegeSubjectById, getCollegeSubjects } from "../controllers";
 
 const router = Router();
 
-router.get("/subjects", getSubjects);
+router.get("/subjects", getCollegeSubjects);
 
-router.get("/subjects/:subjectId", getSubjectById);
+router.get("/subjects/:subjectId", getCollegeSubjectById);
 
 router.get('/subjects/:subjectId/students', getCollegeStudentsBySubjectId)
 

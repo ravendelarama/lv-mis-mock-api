@@ -3,12 +3,13 @@ export {
   seedCollegeStudents,
   getCollegeStudentByIdAndIdType,
   truncateCollegeStudentsCollection,
-  getSectionByStudentId,
+  getCollegeSectionByStudentId,
+  getCollegeSubjectsByStudentId,
 } from "./college-student";
 
 export {
-  getSubjects,
-  getSubjectById,
+  getCollegeSubjects,
+  getCollegeSubjectById,
   getCollegeStudentsBySubjectId,
   getCollegeSectionsBySubjectId,
 } from "./college-subject";

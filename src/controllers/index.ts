@@ -5,4 +5,4 @@ export {
   truncateCollegeStudentsCollection,
 } from "./college-student";
 
-export { getSubjects } from "./college-subject";
+export { getSubjects, getSubjectById } from "./college-subject";

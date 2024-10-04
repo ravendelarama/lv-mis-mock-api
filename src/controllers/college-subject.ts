@@ -79,3 +79,37 @@ export const getCollegeStudentsBySubjectId = expressAsyncHandler(
     }
   }
 );
+
+export const getCollegeSectionsBySubjectId = expressAsyncHandler(
+  async (req, res) => {
+    try {
+      const { subjectId } = req.params;
+      const take = req.query.take ? Number(req.query.take) : 10;
+      const page = req.query.page ? Number(req.query.page) : 1;
+      const skip = (page - 1) * take || 0;
+
+      const sectionsTakingSubject = await db.collegeSection.findMany({
+        where: {
+          subjectSections: {
+            some: {
+              subjectId,
+            },
+          },
+        },
+        skip,
+        take,
+      });
+
+      response(res, 200, true, null, sectionsTakingSubject, {
+        pagination: {
+          page,
+          take,
+          skip,
+          count: sectionsTakingSubject.length,
+        },
+      });
+    } catch (e) {
+      response(res, 500, false, "Internal Server Error", null);
+    }
+  }
+);

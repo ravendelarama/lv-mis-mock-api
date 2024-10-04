@@ -66,7 +66,7 @@ export const getCollegeStudentByIdAndIdType = expressAsyncHandler(
 
       switch (idType) {
         case "id":
-          criterion = { id: id };
+          criterion = { id };
           break;
         case "schoolId":
           criterion = {

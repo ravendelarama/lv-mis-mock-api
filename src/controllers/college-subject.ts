@@ -26,3 +26,22 @@ export const getSubjects = expressAsyncHandler(async (req, res) => {
     response(res, 500, false, "Internal Server Error", null);
   }
 });
+
+export const getSubjectById = expressAsyncHandler(async (req, res) => {
+  try {
+    const { subjectId } = req.params;
+    const data = await db.collegeSubject.findFirst({
+      where: {
+        id: subjectId,
+      },
+    });
+
+    if (!data) {
+      return response(res, 404, false, "Subject not found", null);
+    }
+
+    response(res, 200, true, null, data);
+  } catch (e) {
+    response(res, 500, false, "Internal Server Error", null);
+  }
+});

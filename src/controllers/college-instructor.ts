@@ -23,3 +23,25 @@ export const getCollegeInstructors = expressAsyncHandler(async (req, res) => {
     response(res, 500, false, "Internal Server Error", null);
   }
 });
+
+export const getCollegeInstructorById = expressAsyncHandler(
+  async (req, res) => {
+    try {
+      const { instructorId } = req.params;
+      if (!instructorId) {
+        return response(res, 400, false, "Invalid request parameters", null);
+      }
+
+      const data = await db.collegeInstructor.findUnique({
+        where: { id: instructorId },
+      });
+
+      if (!data) {
+        return response(res, 404, false, "Instructor not found", null);
+      }
+      response(res, 200, true, null, data);
+    } catch (e) {
+      response(res, 500, false, "Internal Server Error", null);
+    }
+  }
+);

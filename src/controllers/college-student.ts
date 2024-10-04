@@ -3,7 +3,6 @@ import { db } from "../models";
 import { response } from "../utils/response";
 import { seed } from "../utils/seeder";
 
-
 export const getCollegeStudents = expressAsyncHandler(async (req, res) => {
   try {
     // TODO
@@ -49,8 +48,8 @@ export const seedCollegeStudents = expressAsyncHandler(async (req, res) => {
 export const getCollegeStudentByIdAndIdType = expressAsyncHandler(
   async (req, res) => {
     try {
-      const { id, idType } = req.params;
-      if (!id || !idType) {
+      const { studentId, studentIdType } = req.params;
+      if (!studentId || !studentIdType) {
         return response(
           res,
           400,
@@ -60,17 +59,15 @@ export const getCollegeStudentByIdAndIdType = expressAsyncHandler(
         );
       }
 
-      console.log(id, idType);
-
       let criterion;
 
-      switch (idType) {
+      switch (studentIdType) {
         case "id":
-          criterion = { id };
+          criterion = { id: studentId };
           break;
         case "schoolId":
           criterion = {
-            schoolId: id,
+            schoolId: studentId,
           };
           break;
         default:
@@ -78,7 +75,7 @@ export const getCollegeStudentByIdAndIdType = expressAsyncHandler(
             res,
             400,
             false,
-            "Invalid request parameter 'idType'. Must be 'id' or'schoolId'",
+            "Invalid request parameter 'studentIdType'. Must be 'id' or'schoolId'",
             null
           );
       }

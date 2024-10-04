@@ -109,3 +109,34 @@ export const truncateCollegeStudentsCollection = expressAsyncHandler(
     }
   }
 );
+
+export const getSectionByStudentId = expressAsyncHandler(async (req, res) => {
+  try {
+    const { studentId } = req.params;
+    if (!studentId) {
+      return response(
+        res,
+        400,
+        false,
+        "Invalid request parameters. Contact dev team.",
+        null
+      );
+    }
+    const section = await db.collegeSection.findFirst({
+      where: {
+        studentSections: {
+          some: {
+            studentId,
+          },
+        },
+      },
+    });
+    if (!section) {
+      return response(res, 404, false, "Section not found", null);
+    }
+
+    response(res, 200, true, null, section);
+  } catch (e) {
+    response(res, 500, false, "Internal Server Error", null);
+  }
+});

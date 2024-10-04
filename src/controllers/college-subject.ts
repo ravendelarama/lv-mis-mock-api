@@ -3,7 +3,7 @@ import { db } from "../models";
 import { response } from "../utils/response";
 import { seed } from "../utils/seeder";
 
-export const getSubjects = expressAsyncHandler(async (req, res) => {
+export const getCollegeSubjects = expressAsyncHandler(async (req, res) => {
   try {
     const take = req.query.take ? Number(req.query.take) : 10;
     const page = req.query.page ? Number(req.query.page) : 1;
@@ -27,7 +27,7 @@ export const getSubjects = expressAsyncHandler(async (req, res) => {
   }
 });
 
-export const getSubjectById = expressAsyncHandler(async (req, res) => {
+export const getCollegeSubjectById = expressAsyncHandler(async (req, res) => {
   try {
     const { subjectId } = req.params;
     const data = await db.collegeSubject.findFirst({

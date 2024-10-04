@@ -113,3 +113,32 @@ export const getCollegeSectionsBySubjectId = expressAsyncHandler(
     }
   }
 );
+
+export const getCollegeInstructorBySubjectId = expressAsyncHandler(
+  async (req, res) => {
+    try {
+      const { subjectId } = req.params;
+      const data = await db.collegeInstructor.findFirst({
+        where: {
+          subjects: {
+            some: {
+              subjectId,
+            },
+          },
+        },
+      });
+      if (!data) {
+        return response(
+          res,
+          404,
+          false,
+          "Instructor not found for the subject",
+          null
+        );
+      }
+      response(res, 200, true, null, data);
+    } catch (e) {
+      response(res, 500, false, "Internal Server Error", null);
+    }
+  }
+);

@@ -15,4 +15,8 @@ export {
   getCollegeInstructorBySubjectId,
 } from "./college-subject";
 
-export { getCollegeInstructors, getCollegeInstructorById } from "./college-instructor";
+export {
+  getCollegeInstructors,
+  getCollegeInstructorById,
+  getCollegeSubjectsByInstructorId,
+} from "./college-instructor";

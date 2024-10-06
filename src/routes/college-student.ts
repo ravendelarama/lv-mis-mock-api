@@ -12,10 +12,13 @@ const router = Router();
 
 router.get("/students", getCollegeStudents);
 
+// Get the section where the specified student belongs to
 router.get("/students/:studentId/section", getCollegeSectionByStudentId);
 
+// Get the subjects the specified student is enrolled in
 router.get("/students/:studentId/subjects", getCollegeSubjectsByStudentId);
 
+// Get student information by their ID type and ID
 router.get(
   "/students/:studentIdType/:studentId",
   getCollegeStudentByIdAndIdType

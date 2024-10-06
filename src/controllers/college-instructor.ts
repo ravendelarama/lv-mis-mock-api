@@ -45,3 +45,35 @@ export const getCollegeInstructorById = expressAsyncHandler(
     }
   }
 );
+
+export const getCollegeSubjectsByInstructorId = expressAsyncHandler(
+  async (req, res) => {
+    try {
+      const { instructorId } = req.params;
+      const take = req.query.take ? Number(req.query.take) : 10;
+      const page = req.query.page ? Number(req.query.page) : 1;
+      const skip = (page - 1) * take || 0;
+      const data = await db.collegeSubject.findMany({
+        where: {
+          instructorSubjects: {
+            some: {
+              instructorId,
+            },
+          },
+        },
+        skip,
+        take,
+      });
+      response(res, 200, true, null, data, {
+        pagination: {
+          page,
+          take,
+          skip,
+          count: data.length,
+        },
+      });
+    } catch (e) {
+      response(res, 500, false, "Internal Server Error", null);
+    }
+  }
+);

@@ -5,6 +5,7 @@ export {
   truncateCollegeStudentsCollection,
   getCollegeSectionByStudentId,
   getCollegeSubjectsByStudentId,
+  getCollegeStudentsBySubjectIdAndSectionId
 } from "./college-student";
 
 export {

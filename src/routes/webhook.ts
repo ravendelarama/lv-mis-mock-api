@@ -2,7 +2,7 @@ import { Body, Entry } from "../types/types";
 import express, { Request } from "express";
 
 const router = express.Router();
-const VERIFY_TOKEN = process.env.FB_MESSENGER_VERIFY_TOKEN;
+const VERIFY_TOKEN = process.env.FACEBOOK_ACCESS_TOKEN;
 
 router.get("/", (req, res) => {
   const mode = req.query["hub.mode"];

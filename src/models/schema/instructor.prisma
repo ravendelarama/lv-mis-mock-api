@@ -1,6 +1,8 @@
-model CollegeInstructor {
+model Instructor {
     id         String    @id @default(auto()) @map("_id") @db.ObjectId
-    image      String
+    userId     String    @db.ObjectId
+    imageUrl   String?
+    employeeId String
     firstName  String
     middleName String
     lastName   String
@@ -10,8 +12,8 @@ model CollegeInstructor {
     deletedAt  DateTime?
 
     // Relations
-    subjects                  CollegeInstructorSubject[]
-    instructorStudentSubjects CollegeInstructorStudentSubject[]
+    subjects CollegeInstructorSubject[]
+    user     Users                      @relation(fields: [userId], references: [id])
 
     @@map("college_instructors")
 }

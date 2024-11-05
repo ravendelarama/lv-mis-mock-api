@@ -7,7 +7,7 @@ export const getCollegeInstructors = expressAsyncHandler(async (req, res) => {
     const take = req.query.take ? Number(req.query.take) : 10;
     const page = req.query.page ? Number(req.query.page) : 1;
     const skip = (page - 1) * take || 0;
-    const data = await db.collegeInstructor.findMany({
+    const data = await db.instructor.findMany({
       skip,
       take,
     });
@@ -20,6 +20,7 @@ export const getCollegeInstructors = expressAsyncHandler(async (req, res) => {
       },
     });
   } catch (e) {
+    console.log(e);
     response(res, 500, false, "Internal Server Error", null);
   }
 });
@@ -32,7 +33,7 @@ export const getCollegeInstructorById = expressAsyncHandler(
         return response(res, 400, false, "Invalid request parameters", null);
       }
 
-      const data = await db.collegeInstructor.findUnique({
+      const data = await db.instructor.findUnique({
         where: { id: instructorId },
       });
 

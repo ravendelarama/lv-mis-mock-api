@@ -9,8 +9,8 @@ model CollegeSection {
 
     // Relations
     program         CollegeProgram          @relation(fields: [programId], references: [id])
-    studentSections CollegeStudentSection[]
-    subjectSections CollegeSubjectSection[]
+    students CollegeStudentSection[]
+    collegeSubjects CollegeSubjectSection[]
 
     @@map("college_sections")
 }

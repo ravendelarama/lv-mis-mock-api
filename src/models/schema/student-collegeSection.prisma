@@ -7,8 +7,8 @@ model CollegeStudentSection {
     deletedAt DateTime?
 
     // Relations
-    student CollegeStudent @relation(fields: [studentId], references: [id])
-    section CollegeSection @relation(fields: [sectionId], references: [id])
+    student Student @relation(fields: [studentId], references: [id])
+    collegeSection CollegeSection @relation(fields: [sectionId], references: [id])
 
     @@map("college_student_sections")
 }

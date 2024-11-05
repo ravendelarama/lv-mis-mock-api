@@ -1,0 +1,16 @@
+model BasicEdSection {
+    id        String    @id @default(auto()) @map("_id") @db.ObjectId
+    name      String
+    level     Int
+    strandId  String    @db.ObjectId
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
+
+    // Relations
+
+    strand                 Strand                  @relation(fields: [strandId], references: [id])
+    basicEdStudentSections BasicEdStudentSection[]
+
+    @@map("basicEd_sections")
+}

@@ -2,13 +2,18 @@ model CollegeSubjectSection {
     id        String    @id @default(auto()) @map("_id") @db.ObjectId
     subjectId String    @db.ObjectId
     sectionId String    @db.ObjectId
+    unit      Int
+    major     Boolean
+    startTime DateTime
+    endTime   DateTime
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
     deletedAt DateTime?
 
     // Relations
-    subject CollegeSubject @relation(fields: [subjectId], references: [id])
-    section CollegeSection @relation(fields: [sectionId], references: [id])
+    collegeSubject CollegeSubject @relation(fields: [subjectId], references: [id])
+    collegeSection CollegeSection @relation(fields: [sectionId], references: [id])
 
     @@map("college_subject_sections")
 }
+

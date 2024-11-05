@@ -7,7 +7,7 @@ model CollegeInstructorSubject {
   deletedAt    DateTime?
 
   // Relations
-  instructor CollegeInstructor @relation(fields: [instructorId], references: [id])
+  instructor Instructor @relation(fields: [instructorId], references: [id])
   subject    CollegeSubject    @relation(fields: [subjectId], references: [id])
 
   @@unique([instructorId, subjectId])

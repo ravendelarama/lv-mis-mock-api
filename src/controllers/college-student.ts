@@ -12,7 +12,7 @@ export const getCollegeStudents = expressAsyncHandler(async (req, res) => {
     const page = req.query.page ? Number(req.query.page) : 1;
     const skip = (page - 1) * take || 0;
 
-    const data = await db.collegeStudent.findMany({
+    const data = await db.student.findMany({
       skip,
       take,
     });
@@ -35,7 +35,7 @@ export const seedCollegeStudents = expressAsyncHandler(async (req, res) => {
     const count = req.query.count ? Number(req.query.count) : 1;
     const newCollegeStudents = await seed.student(count);
 
-    const data = await db.collegeStudent.createMany({
+    const data = await db.student.createMany({
       data: newCollegeStudents,
     });
 
@@ -80,7 +80,7 @@ export const getCollegeStudentByIdAndIdType = expressAsyncHandler(
           );
       }
 
-      const student = await db.collegeStudent.findFirst({ where: criterion });
+      const student = await db.student.findFirst({ where: criterion });
 
       if (!student) {
         return response(res, 404, false, "Student not found", null);
@@ -96,7 +96,7 @@ export const getCollegeStudentByIdAndIdType = expressAsyncHandler(
 export const truncateCollegeStudentsCollection = expressAsyncHandler(
   async (req, res) => {
     try {
-      await db.collegeStudent.deleteMany({});
+      await db.student.deleteMany({});
       response(
         res,
         200,
@@ -125,7 +125,7 @@ export const getCollegeSectionByStudentId = expressAsyncHandler(
       }
       const section = await db.collegeSection.findFirst({
         where: {
-          studentSections: {
+          students: {
             some: {
               studentId,
             },
@@ -162,7 +162,7 @@ export const getCollegeSubjectsByStudentId = expressAsyncHandler(
       }
       const subjects = await db.collegeSubject.findMany({
         where: {
-          studentSubjects: {
+          students: {
             some: {
               studentId,
             },
@@ -196,14 +196,14 @@ export const getCollegeStudentsBySubjectIdAndSectionId = expressAsyncHandler(
         );
       }
 
-      const students = await db.collegeStudent.findMany({
+      const students = await db.student.findMany({
         where: {
-          studentSubjects: {
+          collegeSubjects: {
             some: {
               subjectId,
             },
           },
-          studentSections: {
+          collegeSections: {
             some: {
               sectionId,
             },

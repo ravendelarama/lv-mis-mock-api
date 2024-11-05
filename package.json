@@ -6,8 +6,7 @@
     "build": "tsc -p .",
     "dev": "nodemon",
     "start": "ts-node dist/index.js",
-    "db": "prisma db push --schema src/models/schema",
-    "client": "prisma generate --schema=src/models/schema"
+    "prisma": "prisma db push --schema src/models/schema && prisma generate --schema=src/models/schema"
   },
   "keywords": [],
   "author": "",

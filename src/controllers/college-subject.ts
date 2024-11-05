@@ -54,9 +54,9 @@ export const getCollegeStudentsBySubjectId = expressAsyncHandler(
       const page = req.query.page ? Number(req.query.page) : 1;
       const skip = (page - 1) * take || 0;
 
-      const studentsTakingSubject = await db.collegeStudent.findMany({
+      const studentsTakingSubject = await db.student.findMany({
         where: {
-          studentSubjects: {
+          collegeSubjects: {
             some: {
               subjectId,
             },
@@ -90,7 +90,7 @@ export const getCollegeSectionsBySubjectId = expressAsyncHandler(
 
       const sectionsTakingSubject = await db.collegeSection.findMany({
         where: {
-          subjectSections: {
+          collegeSubjects: {
             some: {
               subjectId,
             },
@@ -129,7 +129,7 @@ export const getCollegeInstructorBySubjectId = expressAsyncHandler(
         );
       }
 
-      const data = await db.collegeInstructor.findFirst({
+      const data = await db.instructor.findFirst({
         where: {
           subjects: {
             some: {

@@ -8,8 +8,8 @@ model CollegeStudentProgram {
     deletedAt DateTime?
 
     // Relations
-    student CollegeStudent @relation(fields: [studentId], references: [id])
-    program CollegeProgram @relation(fields: [programId], references: [id])
+    student Student @relation(fields: [studentId], references: [id])
+    collegeProgram CollegeProgram @relation(fields: [programId], references: [id])
 
     @@unique([studentId, programId])
     @@map("college_student_programs")

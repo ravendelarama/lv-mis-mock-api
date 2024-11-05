@@ -7,8 +7,8 @@ model CollegeStudentSubject {
     deletedAt DateTime?
 
     // Relations
-    student CollegeStudent @relation(fields: [studentId], references: [id])
-    subject CollegeSubject @relation(fields: [subjectId], references: [id])
+    student Student @relation(fields: [studentId], references: [id])
+    collegeSubject CollegeSubject @relation(fields: [subjectId], references: [id])
 
     @@unique([studentId, subjectId])
     @@map("college_student_subjects")

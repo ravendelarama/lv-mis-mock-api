@@ -1,0 +1,12 @@
+model Strand {
+    id          String    @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    deletedAt   DateTime?
+
+    basicEdSections BasicEdSection[]
+
+    @@map("strands")
+}

@@ -1,0 +1,17 @@
+model CollegeSubject {
+    id          String    @id @default(auto()) @map("_id") @db.ObjectId
+    title       String
+    code        String
+    description String
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    deletedAt   DateTime?
+
+    // Relations
+    instructorSubjects CollegeInstructorSubject[]
+    students           CollegeStudentSubject[]
+    collegeSections    CollegeSubjectSection[]
+    collegeSchedules   CollegeSubjectSchedule[]
+
+    @@map("college_subjects")
+}

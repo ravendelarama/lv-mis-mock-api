@@ -1,0 +1,17 @@
+model Users {
+    id          String    @id @default(auto()) @map("_id") @db.ObjectId
+    googleId    String
+    hasPassword Boolean
+    password    String
+    email       String    @unique
+    role        String
+    username    String    @unique
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    deletedAt   DateTime?
+
+    students    Student[]
+    instructors Instructor[]
+
+    @@map("users")
+}

@@ -1,0 +1,16 @@
+model CollegeStudentProgram {
+    id        String    @id @default(auto()) @map("_id") @db.ObjectId
+    studentId String    @db.ObjectId
+    programId String    @db.ObjectId
+    yearLevel Int
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
+
+    // Relations
+    student Student @relation(fields: [studentId], references: [id])
+    collegeProgram CollegeProgram @relation(fields: [programId], references: [id])
+
+    @@unique([studentId, programId])
+    @@map("college_student_programs")
+}

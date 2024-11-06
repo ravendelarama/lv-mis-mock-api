@@ -1,0 +1,25 @@
+model Student {
+    id            String    @id @default(auto()) @map("_id") @db.ObjectId
+    userId        String    @db.ObjectId
+    schoolId      String
+    firstName     String
+    middleName    String?
+    lastName      String
+    imageUrl      String?
+    email         String    @unique
+    irregular     Boolean   @default(false)
+    educationType String
+    sex           String
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime  @updatedAt
+    deletedAt     DateTime?
+
+    // Relations
+    programs               CollegeStudentProgram[]
+    collegeSections CollegeStudentSection[]
+    collegeSubjects CollegeStudentSubject[]
+    basicEdSubjects BasicEdStudentSection[]
+    user                   Users                   @relation(fields: [userId], references: [id])
+
+    @@map("students")
+}

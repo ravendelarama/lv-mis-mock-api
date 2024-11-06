@@ -1,0 +1,19 @@
+model Instructor {
+    id         String    @id @default(auto()) @map("_id") @db.ObjectId
+    userId     String    @db.ObjectId
+    imageUrl   String?
+    employeeId String
+    firstName  String
+    middleName String
+    lastName   String
+    email      String    @unique
+    createdAt  DateTime  @default(now())
+    updatedAt  DateTime  @updatedAt
+    deletedAt  DateTime?
+
+    // Relations
+    subjects CollegeInstructorSubject[]
+    user     Users                      @relation(fields: [userId], references: [id])
+
+    @@map("college_instructors")
+}

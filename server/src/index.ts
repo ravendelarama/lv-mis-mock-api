@@ -2,7 +2,7 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import express, { Request } from "express";
+import express from "express";
 import http from "http";
 import { awakeServer } from "./jobs";
 import {
@@ -20,9 +20,10 @@ const server = http.createServer(app);
 app.use(
   cors({
     origin: [
-      process.env.APP_DEV_URL!,
-      process.env.APP_PROD_URL!,
-      "http://localhost:4200",
+      process.env.SERVICE_DEV_URL!,
+      process.env.SERVICE_PROD_URL!,
+      process.env.CLIENT_DEV_URL!,
+      process.env.CLIENT_PROD_URL!,
     ],
     credentials: true,
   })
@@ -50,7 +51,7 @@ app.get("/console", (req, res) => {
   res.send("Hello, Console!");
 });
 
-awakeServer();
+// awakeServer();
 
 const PORT = process.env.PORT || 3000;
 

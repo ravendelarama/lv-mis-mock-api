@@ -8,4 +8,6 @@ model BasicEdStudentSection {
 
     student Student        @relation(fields: [studentId], references: [id])
     basicEdSection BasicEdSection @relation(fields: [basicEdSectionId], references: [id])
+
+    @@map("basicEd_student_sections")
 }

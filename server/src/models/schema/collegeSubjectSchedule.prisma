@@ -7,6 +7,9 @@ model CollegeSubjectSchedule {
     deletedAt DateTime?
 
     subject   CollegeSubject @relation( fields: [subjectId], references: [id])
+
+    @@map("college_subject_schedules")
+
 }
 
 

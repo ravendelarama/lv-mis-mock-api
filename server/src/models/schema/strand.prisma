@@ -7,4 +7,6 @@ model Strand {
     deletedAt   DateTime?
 
     basicEdSections BasicEdSection[]
+
+    @@map("strands")
 }

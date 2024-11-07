@@ -5,6 +5,7 @@ const router = Router();
 
 router.get("/instructors", getCollegeInstructors);
 
+// instructor
 router.get('/instructors/:instructorId', getCollegeInstructorById)
 
 // Get the subjects that the instructor handles

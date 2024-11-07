@@ -16,7 +16,6 @@ const envFile = `export const environment = {
     GMS_SERVICE_URL: '${isProduction ? process.env.PROD_GMS_SERVICE_URL : process.env.DEV_GMS_SERVICE_URL}',
 };
 `;
-
 const targetPath = path.join(__dirname, './src/environments/environment.development.ts');
 fs.writeFile(targetPath, envFile, (err) => {
     if (err) {

@@ -42,8 +42,8 @@ app.get("/", (req, res) => {
   res.send("Hello Server!");
 });
 
-app.post("/console", (req, res) => {
-  const authToken = req.cookies['auth_token']
+app.get("/test", (req, res) => {
+  const authToken = req.headers
   res.json({authToken});
 });
 

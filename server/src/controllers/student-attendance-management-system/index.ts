@@ -17,21 +17,21 @@ export const handleSamsAuthentication = expressAsyncHandler(
           headers: {
             Authorization: "Bearer " + authToken,
           },
-          withCredentials: true
+          withCredentials: true,
         }
       );
 
       if (axiosResponse.status === 200) {
-        res.clearCookie('ams_auth_token')
-        res.clearCookie('auth_token')
         res.cookie("sams_auth_token", authToken, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "strict",
-            maxAge: 60 * 60 * 1000,
-          });
-      
-        return response(res, 200, true, "Authenticated!", {redirectUri: 'http://localhost:4201'})
+          httpOnly: true,
+          secure: true,
+          sameSite: "strict",
+          maxAge: 60 * 60 * 1000,
+        });
+
+        return response(res, 200, true, "Authenticated!", {
+          redirectUri: "http://localhost:4201",
+        });
       } else {
         res.status(axiosResponse.status).send(axiosResponse.data);
       }

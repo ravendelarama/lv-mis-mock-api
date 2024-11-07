@@ -5,8 +5,7 @@ interface System {
   name: string;
   description: string;
   logoUrl: string;
-  clientUrl: string;
-  serverUrl: string;
+  authenticationUrlSegment: string;
 }
 
 @Component({
@@ -24,39 +23,37 @@ export class PortalComponent {
         description: 'This is System A',
         logoUrl:
           'https://placehold.co/600x400?text=Student+Attendance+Management+System',
-        clientUrl: 'http://localhost:4200',
-        serverUrl: 'http://localhost:5050',
+        authenticationUrlSegment: 'sams-redirect',
       },
       {
         name: 'Grading Management System',
         description: 'This is System B',
         logoUrl: 'https://placehold.co/600x400?text=Grading+Management+System',
-        clientUrl: 'https://client-b.com',
-        serverUrl: 'https://server-b.com',
+        authenticationUrlSegment: 'gms-redirect',
       },
     ];
   }
 
   xRedirect(system: System) {
-    this.webService.xSystemRedirect(`http://localhost:3000/api/x-system/sams-redirect`).subscribe({
+    this.webService.xSystemRedirect(system.authenticationUrlSegment).subscribe({
       next: (res: any) => {
-        console.log(res)
+        console.log(res);
         window.location.href = res.data.redirectUri;
       },
       error: (error) => {
         console.error('Error:', error);
       },
-    })
+    });
   }
 
-  logout(){
+  logout() {
     this.webService.logout().subscribe({
       next: (res: any) => {
-        console.log(res)
+        console.log(res);
       },
       error: (error) => {
         console.error('Error:', error);
       },
-    })
+    });
   }
 }

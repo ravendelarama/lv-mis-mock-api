@@ -5,13 +5,13 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class WebService {
-  serviceUrl: string = environment.SERVICE_URL
+  serviceUrl: string = `${environment.SERVICE_URL}`
   appUrl: string = environment.APP_URL
 
   constructor(private http: HttpClient) {}
 
-  xSystemRedirect(authenticationUrl: string) {
-    return this.http.post(authenticationUrl, {}, { withCredentials: true });
+  xSystemRedirect(authenticationUrlSegment: string) {
+    return this.http.post(`${this.serviceUrl}/api/x-system/${authenticationUrlSegment}`, {}, { withCredentials: true });
   }
 
   logout(){

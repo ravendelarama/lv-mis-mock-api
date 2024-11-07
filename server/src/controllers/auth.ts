@@ -4,8 +4,8 @@ import { response } from "../utils/response";
 
 const redirectUri =
   process.env.NODE_ENV !== "production"
-    ? process.env.CLIENT_DEV_URL
-    : process.env.CLIENT_PROD_URL;
+    ? process.env.DEV_CLIENT_URL
+    : process.env.PROD_CLIENT_URL;
 
 export const handleGoogleCallback = expressAsyncHandler(async (req, res) => {
   const authToken = generateJwt(

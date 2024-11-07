@@ -7,8 +7,8 @@ dotenv.config();
 
 const serviceUrl =
   process.env.NODE_ENV !== "production"
-    ? process.env.SERVICE_DEV_URL
-    : process.env.SERVICE_PROD_URL;
+    ? process.env.DEV_SERVICE_URL
+    : process.env.PROD_SERVICE_URL;
 
 passport.use(
   new GoogleStrategy(

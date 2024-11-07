@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WebService } from '../../services/web.service';
 
 interface System {
   name: string;
@@ -16,15 +17,15 @@ interface System {
 export class PortalComponent {
   systems: System[] = [];
 
-  constructor() {
+  constructor(private webService: WebService) {
     this.systems = [
       {
         name: 'Student Attendance Management System',
         description: 'This is System A',
         logoUrl:
           'https://placehold.co/600x400?text=Student+Attendance+Management+System',
-        clientUrl: 'https://client-a.com',
-        serverUrl: 'https://server-a.com',
+        clientUrl: 'http://localhost:4200',
+        serverUrl: 'http://localhost:5050',
       },
       {
         name: 'Grading Management System',
@@ -37,6 +38,25 @@ export class PortalComponent {
   }
 
   xRedirect(system: System) {
-    alert(JSON.stringify(system));
+    this.webService.xSystemRedirect(`http://localhost:3000/api/x-system/sams-redirect`).subscribe({
+      next: (res: any) => {
+        console.log(res)
+        window.location.href = res.data.redirectUri;
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      },
+    })
+  }
+
+  logout(){
+    this.webService.logout().subscribe({
+      next: (res: any) => {
+        console.log(res)
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      },
+    })
   }
 }

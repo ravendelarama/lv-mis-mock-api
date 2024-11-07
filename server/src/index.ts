@@ -21,7 +21,7 @@ const app = express();
 const server = http.createServer(app);
 
 
-app.use( cors({ origin: [ process.env.SERVICE_DEV_URL!, process.env.SERVICE_PROD_URL!, process.env.CLIENT_DEV_URL!, process.env.CLIENT_PROD_URL!, ], credentials: true, }));
+app.use( cors({ origin: [ process.env.SERVICE_DEV_URL!, process.env.SERVICE_PROD_URL!, process.env.CLIENT_DEV_URL!, process.env.CLIENT_PROD_URL! ], credentials: true, }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(
@@ -33,17 +33,17 @@ app.use(compression());
 
 // routers
 app.use("/api/v1/college", collegeStudentRouter, collegeSubjectRouter, collegeInstructorRouter);
+app.use('/api/x-system', gmsRouter, samsRouter)
 app.use('/webhook', webhookRouter)
 app.use('/auth', authRouter)
-app.use('/x-system', gmsRouter, samsRouter)
 
 // to prevent render hosting server termination
 app.get("/", (req, res) => {
   res.send("Hello Server!");
 });
 
-app.post("/console", (req, res) => {
-  const authToken = req.cookies['auth_token']
+app.get("/test", (req, res) => {
+  const authToken = req.headers
   res.json({authToken});
 });
 

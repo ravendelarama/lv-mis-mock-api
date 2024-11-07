@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const envFile = `export const environment = {
     NODE_ENV: '${process.env.NODE_ENV}',
-    APP_URL: '${isProduction ? process.env.PROD_APP_URL : process.env.DEV_APP_URL}',
+    CLIENT_URL: '${isProduction ? process.env.PROD_CLIENT_URL : process.env.DEV_CLIENT_URL}',
     SERVICE_URL: '${isProduction ? process.env.PROD_SERVICE_URL : process.env.DEV_SERVICE_URL}',
     SAMS_CLIENT_URL: '${isProduction ? process.env.PROD_SAMS_CLIENT_URL : process.env.DEV_SAMS_CLIENT_URL}',
     SAMS_SERVICE_URL: '${isProduction ? process.env.PROD_SAMS_SERVICE_URL : process.env.DEV_SAMS_SERVICE_URL}',

@@ -4,7 +4,7 @@ import { handleGoogleCallback } from "../controllers";
 import { logout } from "../controllers/auth";
 
 const router = express.Router();
-const redirectUri = process.env.NODE_ENV !== 'production' ? process.env.CLIENT_DEV_URL : process.env.CLIENT_PROD_URL
+const redirectUri = process.env.NODE_ENV !== 'production' ? process.env.DEV_CLIENT_URL : process.env.PROD_CLIENT_URL
 
 router.get("/google", passport.authenticate('google', {scope: ['profile', 'email']}));
 

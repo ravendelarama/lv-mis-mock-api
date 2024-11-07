@@ -21,7 +21,7 @@ const app = express();
 const server = http.createServer(app);
 
 
-app.use( cors({ origin: [ process.env.SERVICE_DEV_URL!, process.env.SERVICE_PROD_URL!, process.env.CLIENT_DEV_URL!, process.env.CLIENT_PROD_URL! ], credentials: true, }));
+app.use( cors({ origin: [ process.env.DEV_SERVICE_URL!, process.env.PROD_SERVICE_URL!, process.env.DEV_CLIENT_URL!, process.env.PROD_CLIENT_URL! ], credentials: true, }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(

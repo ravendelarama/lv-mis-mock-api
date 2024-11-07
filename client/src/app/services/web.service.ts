@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 })
 export class WebService {
   serviceUrl: string = `${environment.SERVICE_URL}`
-  appUrl: string = environment.APP_URL
+  appUrl: string = environment.CLIENT_URL
 
   constructor(private http: HttpClient) {}
 

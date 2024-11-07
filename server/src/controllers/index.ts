@@ -21,3 +21,8 @@ export {
   getCollegeInstructorById,
   getCollegeSubjectsByInstructorId,
 } from "./college-instructor";
+
+export {
+  verifyMetaMessengerWebhook,
+  handleReferralEvent
+} from './webhook'

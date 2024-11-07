@@ -2,7 +2,7 @@ model Users {
     id          String    @id @default(auto()) @map("_id") @db.ObjectId
     googleId    String
     hasPassword Boolean
-    password    String
+    password    String?
     email       String    @unique
     role        String
     username    String    @unique

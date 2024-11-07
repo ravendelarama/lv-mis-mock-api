@@ -2,8 +2,10 @@ import expressAsyncHandler from "express-async-handler";
 import axios from "axios";
 import { response } from "../../utils/response";
 
-const samsClientUrl = process.env.SAMS_CLIENT_URL_DEV;
-const samsServiceUrl = process.env.SAMS_SERVICE_URL_DEV;
+const isProd = process.env.NODE_ENV === "production";
+
+const samsClientUrl = isProd ? process.env.PROD_SAMS_CLIENT_URL:process.env.DEV_SAMS_CLIENT_URL;
+const samsServiceUrl = isProd ? process.env.PROD_SAMS_SERVICE_URL:process.env.DEV_SAMS_SERVICE_URL;
 
 export const handleSamsAuthentication = expressAsyncHandler(
   async (req, res) => {

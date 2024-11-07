@@ -6,6 +6,7 @@ import express from "express";
 import http from "http";
 import { awakeServer } from "./jobs";
 import {
+  authRouter,
   collegeInstructorRouter,
   collegeStudentRouter,
   collegeSubjectRouter,
@@ -19,7 +20,6 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
-const redirectUri = process.env.NODE_ENV !== 'production' ? process.env.CLIENT_DEV_URL : process.env.CLIENT_PROD_URL
 
 app.use(
   cors({
@@ -44,25 +44,7 @@ app.use(compression());
 // routers
 app.use("/api/v1/college", collegeStudentRouter,collegeSubjectRouter,collegeInstructorRouter);
 app.use('/webhook', webhookRouter)
-
-
-// Google Sign In
-app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}))
-app.get('/auth/google/callback', passport.authenticate('google', { session: false, failureRedirect: redirectUri }), async (req, res) => {
-  
-  const authToken = generateJwt({id: (req?.user as {id: string}).id}, {type: "access"})
-  console.log('auth_token', authToken)
-
-  res.cookie('auth_token', authToken, {
-    httpOnly: true,
-    sameSite: "strict",
-    secure: true,
-    maxAge: 60 * 60 * 1000
-  })
-  
-  console.log(req.user)
-  res.redirect(`${redirectUri}`)
-})
+app.use('/auth', authRouter)
 
 // to prevent render hosting server termination
 app.get("/", (req, res) => {

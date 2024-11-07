@@ -26,3 +26,7 @@ export {
   verifyMetaMessengerWebhook,
   handleReferralEvent
 } from './webhook'
+
+export {
+  handleGoogleCallback
+} from './auth'

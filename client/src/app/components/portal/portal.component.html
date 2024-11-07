@@ -1,0 +1,15 @@
+<div class="w-full flex gap-3">
+  @for (system of systems; track $index) {
+  <p-card
+    (click)="xRedirect(system)"
+    header="{{ system.name }}"
+    class="cursor-pointer w-3"
+  >
+    <ng-template pTemplate="header">
+      <img alt="{{ system.name }}" src="{{ system.logoUrl }}" />
+    </ng-template>
+
+    <p>{{ system.description }}</p>
+  </p-card>
+  }
+</div>

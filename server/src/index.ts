@@ -10,10 +10,10 @@ import {
   collegeInstructorRouter,
   collegeStudentRouter,
   collegeSubjectRouter,
+  gmsRouter,
+  samsRouter,
   webhookRouter,
 } from "./routes";
-import passport from "./config/passport-config";
-import { generateJwt } from "./utils/helpers";
 
 dotenv.config();
 
@@ -21,17 +21,7 @@ const app = express();
 const server = http.createServer(app);
 
 
-app.use(
-  cors({
-    origin: [
-      process.env.SERVICE_DEV_URL!,
-      process.env.SERVICE_PROD_URL!,
-      process.env.CLIENT_DEV_URL!,
-      process.env.CLIENT_PROD_URL!,
-    ],
-    credentials: true,
-  })
-);
+app.use( cors({ origin: [ process.env.SERVICE_DEV_URL!, process.env.SERVICE_PROD_URL!, process.env.CLIENT_DEV_URL!, process.env.CLIENT_PROD_URL!, ], credentials: true, }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(
@@ -42,18 +32,19 @@ app.use(
 app.use(compression());
 
 // routers
-app.use("/api/v1/college", collegeStudentRouter,collegeSubjectRouter,collegeInstructorRouter);
+app.use("/api/v1/college", collegeStudentRouter, collegeSubjectRouter, collegeInstructorRouter);
 app.use('/webhook', webhookRouter)
 app.use('/auth', authRouter)
+app.use('/x-system', gmsRouter, samsRouter)
 
 // to prevent render hosting server termination
 app.get("/", (req, res) => {
   res.send("Hello Server!");
 });
 
-app.get("/console", (req, res) => {
-  console.log("console");
-  res.send("Hello, Console!");
+app.post("/console", (req, res) => {
+  const authToken = req.cookies['auth_token']
+  res.json({authToken});
 });
 
 // awakeServer();

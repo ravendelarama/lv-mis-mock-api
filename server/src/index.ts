@@ -12,6 +12,7 @@ import {
   collegeSubjectRouter,
   gmsRouter,
   samsRouter,
+  userRouter,
   webhookRouter,
 } from "./routes";
 import corsOptions from "./config/cors-config";
@@ -34,6 +35,7 @@ app.use(compression());
 
 // routers
 app.use("/api/v1/college", collegeStudentRouter, collegeSubjectRouter, collegeInstructorRouter);
+app.use("/api/v1/users", userRouter);
 app.use('/api/x-system', gmsRouter, samsRouter)
 app.use('/webhook', webhookRouter)
 app.use('/auth', authRouter)

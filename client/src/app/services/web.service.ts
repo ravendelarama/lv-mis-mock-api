@@ -10,6 +10,10 @@ export class WebService {
 
   constructor(private http: HttpClient) {}
 
+  signInWithGoogle(){
+    window.location.href = `${this.serviceUrl}/auth/google`
+  }
+
   xSystemRedirect(authenticationUrlSegment: string) {
     return this.http.post(`${this.serviceUrl}/api/x-system/${authenticationUrlSegment}`, {}, { withCredentials: true });
   }

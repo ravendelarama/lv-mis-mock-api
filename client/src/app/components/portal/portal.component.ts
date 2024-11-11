@@ -56,4 +56,8 @@ export class PortalComponent {
       },
     });
   }
+
+  signInWithGoogle(){
+    this.webService.signInWithGoogle()
+  }
 }

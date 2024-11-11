@@ -1,6 +1,6 @@
 import compression from "compression";
 import cookieParser from "cookie-parser";
-import cors from "cors";
+import cors, { CorsOptions } from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import http from "http";
@@ -14,14 +14,15 @@ import {
   samsRouter,
   webhookRouter,
 } from "./routes";
+import corsOptions from "./config/cors-config";
+import environment from "./constants/environment";
 
 dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
 
-
-app.use( cors({ origin: [ process.env.DEV_SERVICE_URL!, process.env.PROD_SERVICE_URL!, process.env.DEV_CLIENT_URL!, process.env.PROD_CLIENT_URL! ], credentials: true, }));
+app.use(cors(corsOptions as CorsOptions));
 app.use(cookieParser());
 app.use(express.json());
 app.use(
@@ -42,14 +43,14 @@ app.get("/", (req, res) => {
   res.send("Hello Server!");
 });
 
-app.get("/test", (req, res) => {
-  const authToken = req.headers
-  res.json({authToken});
-});
+// app.get("/test", (req, res) => {
+//   const authToken = req.headers
+//   res.json({authToken});
+// });
 
-// awakeServer();
+awakeServer();
 
-const PORT = process.env.PORT || 3000;
+const PORT = environment.port || 3000;
 
 server.listen(PORT, () =>
   console.log(`Server is now listening to port ${PORT}.`)

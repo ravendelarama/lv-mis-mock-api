@@ -23,12 +23,7 @@ export const handleGoogleCallback = expressAsyncHandler(async (req, res) => {
 
 export const logout = expressAsyncHandler(async (req, res) => {
   try {
-    res.clearCookie("auth_token", {
-      httpOnly: true,
-      sameSite: "strict",
-      secure: true,
-      maxAge: 0,
-    });
+    res.clearCookie("auth_token");
 
     response(res, 200, true, "Successfully logged out");
   } catch (err) {

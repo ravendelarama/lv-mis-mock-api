@@ -7,9 +7,10 @@ export const handleSamsAuthentication = expressAsyncHandler(
   async (req, res) => {
     try {
       const authToken = req.cookies["auth_token"];
-      console.log(authToken)
 
-      const axiosResponse = await axios.post(`${environment.samsServiceUrl as string}/api/x-system/authenticate`, {}, { withCredentials: true });
+      const axiosResponse = await axios.post(`${environment.samsServiceUrl as string}/api/x-system/authenticate`, {}, { withCredentials: true, headers: {
+        Authorization: `Bearer ${authToken}`
+      } });
 
       if (axiosResponse.status === 200) {
         res.cookie("auth_token", authToken, {

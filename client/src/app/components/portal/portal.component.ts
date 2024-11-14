@@ -31,6 +31,24 @@ export class PortalComponent {
         logoUrl: 'https://placehold.co/600x400?text=Grading+Management+System',
         authenticationUrlSegment: 'gms-redirect',
       },
+      {
+        name: 'Human Resources Information System',
+        description: 'This is System C',
+        logoUrl: 'https://placehold.co/600x400?text=HRIS',
+        authenticationUrlSegment: 'hris-redirect',
+      },
+      {
+        name: 'Classroom Schedule and Room Management System',
+        description: 'This is System D',
+        logoUrl: 'https://placehold.co/600x400?text=CSRMS',
+        authenticationUrlSegment: 'csrms-redirect',
+      },
+      {
+        name: 'LV Student Portal',
+        description: 'This is System E',
+        logoUrl: 'https://placehold.co/600x400?text=LV+Connect',
+        authenticationUrlSegment: 'lvconnect-redirect',
+      },
     ];
   }
 

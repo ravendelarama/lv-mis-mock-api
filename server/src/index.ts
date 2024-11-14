@@ -40,7 +40,6 @@ app.use('/api/x-system', gmsRouter, samsRouter)
 app.use('/webhook', webhookRouter)
 app.use('/auth', authRouter)
 
-// to prevent render hosting server termination
 app.get("/", (req, res) => {
   res.send("Hello Server!");
 });

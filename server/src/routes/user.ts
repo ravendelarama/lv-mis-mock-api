@@ -1,15 +1,9 @@
 import { Router } from "express";
-import { response } from "../utils/response";
 import { isAuthenticated } from "../middlewares/auth-middlware";
+import { getSelf } from "../controllers";
 
 const router = Router();
 
-router.get("/@me", isAuthenticated ,(req, res) => {
-  response(res, 200, true, null, {
-    user: {
-        name: 'test name'
-    }
-  })
-});
+router.get("/@me", isAuthenticated, getSelf);
 
 export default router;

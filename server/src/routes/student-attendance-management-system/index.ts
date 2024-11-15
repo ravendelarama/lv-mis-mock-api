@@ -1,9 +1,8 @@
 import express from "express";
+import { handleSamsAuthentication } from "../../controllers";
 
 const router = express.Router();
 
-router.get("/sams-redirect", (req, res) => {
-  res.send("/sams-redirect");
-});
+router.post("/sams-redirect", handleSamsAuthentication);
 
 export default router;

@@ -1,7 +1,8 @@
 import expressAsyncHandler from "express-async-handler";
 import { Body, Entry } from "../types/types";
 import { Request } from "express";
-const VERIFY_TOKEN = process.env.FACEBOOK_ACCESS_TOKEN;
+import environment from "../constants/environment";
+const VERIFY_TOKEN = environment.facebookAccessToken;
 
 export const verifyMetaMessengerWebhook = expressAsyncHandler(
   async (req, res) => {

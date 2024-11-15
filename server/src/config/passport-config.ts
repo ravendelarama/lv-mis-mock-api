@@ -1,21 +1,15 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import dotenv from "dotenv";
 import { db } from "../models";
+import environment from "../constants/environment";
 
-dotenv.config();
-
-const serviceUrl =
-  process.env.NODE_ENV !== "production"
-    ? process.env.SERVICE_DEV_URL
-    : process.env.SERVICE_PROD_URL;
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-      callbackURL: `${serviceUrl}/auth/google/callback`,
+      clientID: environment.googleClientId as string,
+      clientSecret: environment.googleClientSecret as string,
+      callbackURL: `${environment.serviceUrl}/auth/google/callback`,
     },
     async (
       accessToken: string,

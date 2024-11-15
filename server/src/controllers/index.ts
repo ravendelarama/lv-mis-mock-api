@@ -5,7 +5,7 @@ export {
   truncateCollegeStudentsCollection,
   getCollegeSectionByStudentId,
   getCollegeSubjectsByStudentId,
-  getCollegeStudentsBySubjectIdAndSectionId
+  getCollegeStudentsBySubjectIdAndSectionId,
 } from "./college-student";
 
 export {
@@ -22,11 +22,11 @@ export {
   getCollegeSubjectsByInstructorId,
 } from "./college-instructor";
 
-export {
-  verifyMetaMessengerWebhook,
-  handleReferralEvent
-} from './webhook'
+export { verifyMetaMessengerWebhook, handleReferralEvent } from "./webhook";
 
-export {
-  handleGoogleCallback
-} from './auth'
+export { handleGoogleCallback } from "./auth";
+
+export { getSelf } from './user'
+
+export { handleSamsAuthentication } from "./student-attendance-management-system";
+export {} from "./grading-management-system";

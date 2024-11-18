@@ -10,7 +10,7 @@ export const getSelf = expressAsyncHandler(async (req, res) => {
 });
 
 export const createUser = expressAsyncHandler(async (req, res) => {
-  const { email } = req.body
+  const { email, role } = req.body
 
   const username = email.split('@')[0]
   const googleId = await generateRandomGoogleId(20)
@@ -22,7 +22,7 @@ export const createUser = expressAsyncHandler(async (req, res) => {
         username,
         email,
         hasPassword: false,
-        role: "student",
+        role,
       }
     })
 

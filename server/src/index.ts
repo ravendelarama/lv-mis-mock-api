@@ -7,7 +7,7 @@ import http from "http";
 import { awakeServer } from "./jobs";
 import {
   authRouter,
-  collegeInstructorRouter,
+  instructorRouter,
   collegeStudentRouter,
   collegeSubjectRouter,
   gmsRouter,
@@ -34,7 +34,8 @@ app.use(
 app.use(compression());
 
 // routers
-app.use("/api/v1/college", collegeStudentRouter, collegeSubjectRouter, collegeInstructorRouter);
+app.use("/api/v1/college", collegeStudentRouter, collegeSubjectRouter);
+app.use('/api/v1/instructors', instructorRouter)
 app.use("/api/v1/users", userRouter);
 app.use('/api/x-system', gmsRouter, samsRouter)
 app.use('/webhook', webhookRouter)

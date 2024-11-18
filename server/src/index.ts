@@ -8,7 +8,7 @@ import { awakeServer } from "./jobs";
 import {
   authRouter,
   instructorRouter,
-  collegeStudentRouter,
+  studentRouter,
   collegeSubjectRouter,
   gmsRouter,
   samsRouter,
@@ -34,7 +34,8 @@ app.use(
 app.use(compression());
 
 // routers
-app.use("/api/v1/college", collegeStudentRouter, collegeSubjectRouter);
+app.use("/api/v1/college", collegeSubjectRouter);
+app.use('/api/v1/students', studentRouter)
 app.use('/api/v1/instructors', instructorRouter)
 app.use("/api/v1/users", userRouter);
 app.use('/api/x-system', gmsRouter, samsRouter)

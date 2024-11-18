@@ -29,6 +29,6 @@ const router = Router();
 
 // router.get("/students/truncate", truncateCollegeStudentsCollection);
 
-router.post('/students/create', createCollegeStudent)
+router.post('/college/create', createCollegeStudent)
 
 export default router;

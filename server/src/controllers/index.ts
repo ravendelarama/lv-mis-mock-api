@@ -26,7 +26,7 @@ export { verifyMetaMessengerWebhook, handleReferralEvent } from "./webhook";
 
 export { handleGoogleCallback } from "./auth";
 
-export { getSelf } from './user'
+export { getSelf, createUser } from './user'
 
 export { handleSamsAuthentication } from "./student-attendance-management-system";
 export {} from "./grading-management-system";

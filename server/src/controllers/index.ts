@@ -1,11 +1,5 @@
 export {
-  getCollegeStudents,
-  seedCollegeStudents,
-  getCollegeStudentByIdAndIdType,
-  truncateCollegeStudentsCollection,
-  getCollegeSectionByStudentId,
-  getCollegeSubjectsByStudentId,
-  getCollegeStudentsBySubjectIdAndSectionId,
+  createCollegeStudent
 } from "./college-student";
 
 export {

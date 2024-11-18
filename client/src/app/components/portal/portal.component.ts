@@ -22,13 +22,13 @@ export class PortalComponent {
         name: 'Student Attendance Management System',
         description: 'This is System A',
         logoUrl:
-          'https://placehold.co/600x400?text=Student+Attendance+Management+System',
+          'https://placehold.co/600x400?text=SAMS',
         authenticationUrlSegment: 'sams-redirect',
       },
       {
         name: 'Grading Management System',
         description: 'This is System B',
-        logoUrl: 'https://placehold.co/600x400?text=Grading+Management+System',
+        logoUrl: 'https://placehold.co/600x400?text=GMS',
         authenticationUrlSegment: 'gms-redirect',
       },
       {

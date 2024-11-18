@@ -2,6 +2,8 @@ export {
   createCollegeStudent
 } from "./college-student";
 
+export { getStudentById } from './student'
+
 export {
   getCollegeSubjects,
   getCollegeSubjectById,

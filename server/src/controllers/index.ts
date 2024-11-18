@@ -17,10 +17,8 @@ export {
 } from "./college-subject";
 
 export {
-  getCollegeInstructors,
-  getCollegeInstructorById,
-  getCollegeSubjectsByInstructorId,
-} from "./college-instructor";
+  createInstructor
+} from "./instructor";
 
 export { verifyMetaMessengerWebhook, handleReferralEvent } from "./webhook";
 

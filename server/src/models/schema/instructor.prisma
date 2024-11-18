@@ -15,5 +15,5 @@ model Instructor {
     subjects CollegeInstructorSubject[]
     user     Users                      @relation(fields: [userId], references: [id])
 
-    @@map("college_instructors")
+    @@map("instructors")
 }

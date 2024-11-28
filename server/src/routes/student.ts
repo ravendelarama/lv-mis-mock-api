@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
- createCollegeStudent,
+    createStudentInformation,
  getStudentInformationBySchoolId
 } from "../controllers";
 
@@ -32,6 +32,6 @@ const router = Router();
 
 router.get('/:schoolId', getStudentInformationBySchoolId)
 
-router.post('/college/create', createCollegeStudent)
+router.post('/create', createStudentInformation)
 
 export default router;

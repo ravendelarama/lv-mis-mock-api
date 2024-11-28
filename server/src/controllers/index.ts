@@ -1,8 +1,7 @@
 export {
-  createCollegeStudent
 } from "./college-student";
 
-export { getStudentInformationBySchoolId } from './student'
+export { getStudentInformationBySchoolId, createStudentInformation } from './student'
 
 export {
   getCollegeSubjects,

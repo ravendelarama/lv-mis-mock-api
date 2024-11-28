@@ -21,7 +21,7 @@ export { handleGoogleCallback } from "./auth";
 
 export { getSelf, createUser } from './user'
 
-export { getStrands } from './strand'
+export { getStrands, createStrand } from './strand'
 
 export { handleSamsAuthentication } from "./student-attendance-management-system";
 export {} from "./grading-management-system";

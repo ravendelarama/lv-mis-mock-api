@@ -9,17 +9,17 @@ export const getCollegeSubjects = expressAsyncHandler(async (req, res) => {
     const page = req.query.page ? Number(req.query.page) : 1;
     const skip = (page - 1) * take || 0;
 
-    const data = await db.collegeSubject.findMany({
+    const subjects = await db.collegeSubject.findMany({
       skip,
       take,
     });
 
-    response(res, 200, true, null, data, {
+    response(res, 200, true, null, { subjects }, {
       pagination: {
         page,
         take,
         skip,
-        count: data.length,
+        count: subjects.length,
       },
     });
   } catch {
@@ -30,17 +30,17 @@ export const getCollegeSubjects = expressAsyncHandler(async (req, res) => {
 export const getCollegeSubjectById = expressAsyncHandler(async (req, res) => {
   try {
     const { subjectId } = req.params;
-    const data = await db.collegeSubject.findFirst({
+    const subject = await db.collegeSubject.findFirst({
       where: {
         id: subjectId,
       },
     });
 
-    if (!data) {
+    if (!subject) {
       return response(res, 404, false, "Subject not found", null);
     }
 
-    response(res, 200, true, null, data);
+    response(res, 200, true, null, { subject });
   } catch (e) {
     response(res, 500, false, "Internal Server Error", null);
   }
@@ -66,7 +66,7 @@ export const getCollegeStudentsBySubjectId = expressAsyncHandler(
         take,
       });
 
-      response(res, 200, true, null, studentsTakingSubject, {
+      response(res, 200, true, null, { students: studentsTakingSubject}, {
         pagination: {
           page,
           take,
@@ -100,7 +100,7 @@ export const getCollegeSectionsBySubjectId = expressAsyncHandler(
         take,
       });
 
-      response(res, 200, true, null, sectionsTakingSubject, {
+      response(res, 200, true, null, { sections: sectionsTakingSubject }, {
         pagination: {
           page,
           take,
@@ -129,7 +129,7 @@ export const getCollegeInstructorBySubjectId = expressAsyncHandler(
         );
       }
 
-      const data = await db.instructor.findFirst({
+      const instructor = await db.instructor.findFirst({
         where: {
           subjects: {
             some: {
@@ -138,7 +138,7 @@ export const getCollegeInstructorBySubjectId = expressAsyncHandler(
           },
         },
       });
-      if (!data) {
+      if (!instructor) {
         return response(
           res,
           404,
@@ -147,7 +147,7 @@ export const getCollegeInstructorBySubjectId = expressAsyncHandler(
           null
         );
       }
-      response(res, 200, true, null, data);
+      response(res, 200, true, null, { instructor });
     } catch (e) {
       response(res, 500, false, "Internal Server Error", null);
     }

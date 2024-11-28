@@ -3,13 +3,13 @@ import { db } from "../models";
 import { response } from "../utils/response";
 
 
-export const getStudentById = expressAsyncHandler(async (req, res) => {
+export const getStudentInformationBySchoolId = expressAsyncHandler(async (req, res) => {
   try {
-    const { studentId } = req.params
+    const { schoolId } = req.params
 
     const student = await db.student.findFirst({
         where: {
-            schoolId: studentId
+            schoolId
         }
     })
 

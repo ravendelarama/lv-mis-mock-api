@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
- createCollegeStudent,
- getStudentById
+    createStudentInformation,
+ getStudentInformationBySchoolId
 } from "../controllers";
 
 const router = Router();
@@ -30,8 +30,8 @@ const router = Router();
 
 // router.get("/students/truncate", truncateCollegeStudentsCollection);
 
-router.get('/:studentId', getStudentById)
+router.get('/:schoolId', getStudentInformationBySchoolId)
 
-router.post('/college/create', createCollegeStudent)
+router.post('/create', createStudentInformation)
 
 export default router;

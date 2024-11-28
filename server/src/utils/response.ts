@@ -5,6 +5,6 @@ export function response(res: Response, code = 200, success: boolean, message: s
         success,
         message,
         data,
-        ...others
+        ...others,
     });
 }

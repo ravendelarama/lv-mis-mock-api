@@ -1,8 +1,7 @@
 export {
-  createCollegeStudent
 } from "./college-student";
 
-export { getStudentById } from './student'
+export { getStudentInformationBySchoolId, createStudentInformation } from './student'
 
 export {
   getCollegeSubjects,
@@ -21,6 +20,8 @@ export { verifyMetaMessengerWebhook, handleReferralEvent } from "./webhook";
 export { handleGoogleCallback } from "./auth";
 
 export { getSelf, createUser } from './user'
+
+export { getStrands } from './strand'
 
 export { handleSamsAuthentication } from "./student-attendance-management-system";
 export {} from "./grading-management-system";

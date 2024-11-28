@@ -14,6 +14,7 @@ import {
   samsRouter,
   userRouter,
   webhookRouter,
+  strandRouter,
 } from "./routes";
 import corsOptions from "./config/cors-config";
 import environment from "./constants/environment";
@@ -38,6 +39,7 @@ app.use("/api/v1/college", collegeSubjectRouter);
 app.use('/api/v1/students', studentRouter)
 app.use('/api/v1/instructors', instructorRouter)
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/strands", strandRouter);
 app.use('/api/x-system', gmsRouter, samsRouter)
 app.use('/webhook', webhookRouter)
 app.use('/auth', authRouter)

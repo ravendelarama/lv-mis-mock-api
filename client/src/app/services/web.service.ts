@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment.development';
 })
 export class WebService {
   serviceUrl: string = `${environment.SERVICE_URL}`
+  samsServiceUrl: string = `${environment.SAMS_SERVICE_URL}`
   appUrl: string = environment.CLIENT_URL
 
   constructor(private http: HttpClient) {}
@@ -24,6 +25,9 @@ export class WebService {
 
   test(){
     return this.http.get(`${this.serviceUrl}/test`, { withCredentials: true });
+  }
 
+  testFromSams(){
+    return this.http.get(`${this.samsServiceUrl}/api/test`, { withCredentials: true });
   }
 }

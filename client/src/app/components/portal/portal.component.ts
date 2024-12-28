@@ -88,4 +88,15 @@ export class PortalComponent {
       },
     });
   }
+
+  testFromSams(){
+    this.webService.testFromSams().subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      },
+    });
+  }
 }

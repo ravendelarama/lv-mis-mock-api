@@ -48,6 +48,7 @@ app.get("/", (req, res) => {
   res.send("Hello Server!");
 });
 
+console.log(environment.isProd, 'IS PROD?!')
 
 app.get('/test', (req, res) => {
   const token = req.cookies['auth_token']

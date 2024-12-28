@@ -4,7 +4,7 @@ export function response(res: Response, code = 200, success: boolean, message: s
     res.status(code).json({
         success,
         message,
-        data,
+        ...data,
         ...others,
     });
 }

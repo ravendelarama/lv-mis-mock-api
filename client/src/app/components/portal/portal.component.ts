@@ -78,16 +78,6 @@ export class PortalComponent {
     this.webService.signInWithGoogle();
   }
 
-  test() {
-    this.webService.test().subscribe({
-      next: (res: any) => {
-        console.log(res);
-      },
-      error: (error) => {
-        console.error('Error:', error);
-      },
-    });
-  }
 
   testFromSams(){
     this.webService.testFromSams().subscribe({

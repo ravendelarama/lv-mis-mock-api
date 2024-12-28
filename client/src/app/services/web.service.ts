@@ -30,8 +30,8 @@ export class WebService {
     return this.http.post(`${this.serviceUrl}/auth/logout`, {});
   }
 
-  test() {
-    return this.http.get(`${this.serviceUrl}/test`);
+  getSelf(){
+    return this.http.get(`${this.serviceUrl}/api/v1/users/@me`);
   }
 
   testFromSams() {

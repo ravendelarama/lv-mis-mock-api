@@ -1,1 +1,23 @@
-s<button (click)="test()">test</button>
+<div class="p-3 flex flex-column gap-3 md:w-9 md:mx-auto">
+  <div class="cards-container">
+    @for (system of systems; track $index) {
+    <p-card
+      (click)="xRedirect(system)"
+      header="{{ system.name }}"
+      class="cursor-pointer w-full h-full"
+    >
+      <ng-template pTemplate="header">
+        <img alt="{{ system.name }}" src="{{ system.logoUrl }}" />
+      </ng-template>
+      <p>{{ system.description }}</p>
+    </p-card>
+    }
+  </div>
+  <button
+    class="cursor-pointer px-6 py-3 border-round surface-border border-1 shadow-2 w-3 hover:shadow-4"
+    role="button"
+    (click)="logout()"
+  >
+    Logout
+  </button>
+</div>

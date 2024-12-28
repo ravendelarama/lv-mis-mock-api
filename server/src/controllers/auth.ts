@@ -2,23 +2,29 @@ import expressAsyncHandler from "express-async-handler";
 import { generateJwt } from "../utils/helpers";
 import { response } from "../utils/response";
 import environment from "../constants/environment";
+import jwt from "jsonwebtoken";
+import { User } from "src/types/User";
 
-const redirectUri = environment.clientUrl
+const redirectUri = environment.clientUrl;
 
 export const handleGoogleCallback = expressAsyncHandler(async (req, res) => {
-  const authToken = generateJwt(
-    { id: (req?.user as { id: string }).id },
+  const accessToken = generateJwt(
+    { id: (req?.user as User).id },
     { type: "access" }
   );
 
-  res.cookie("auth_token", authToken, {
-    httpOnly: true,
-    secure: environment.isProd ? true : false,
-    sameSite: environment.isProd ? "none" : "lax",
-    maxAge: 60 * 60 * 1000,
-  });
+  res.redirect(`${redirectUri}/auth/callback?at=${accessToken}`);
+});
 
-  res.redirect(`${redirectUri}`);
+export const validateOAuthToken = expressAsyncHandler(async (req, res) => {
+  const { token } = req.body;
+
+  try {
+    jwt.verify(token, environment.accessTokenSecret as string);
+    response(res, 200, true, "OAuth token is valid");
+  } catch (error) {
+    response(res, 401, false, "Invalid OAuth token");
+  }
 });
 
 export const logout = expressAsyncHandler(async (req, res) => {

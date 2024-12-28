@@ -1,0 +1,13 @@
+<ngx-spinner
+  bdColor="rgba(0,0,0, .0125)"
+  size="large"
+  type="ball-atom"
+  color="#000"
+  [fullScreen]="true"
+  ><p
+    class="font-semibold text-lg"
+    [ngClass]="{ 'text-red-500': errorMessage }"
+  >
+    {{ errorMessage || "Please wait..." }}
+  </p></ngx-spinner
+>

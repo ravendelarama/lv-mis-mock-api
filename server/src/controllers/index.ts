@@ -17,7 +17,7 @@ export {
 
 export { verifyMetaMessengerWebhook, handleReferralEvent } from "./webhook";
 
-export { handleGoogleCallback } from "./auth";
+export { handleGoogleCallback, validateOAuthToken } from "./auth";
 
 export { getSelf, createUser } from './user'
 

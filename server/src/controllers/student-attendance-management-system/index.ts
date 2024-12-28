@@ -1,5 +1,5 @@
 import expressAsyncHandler from "express-async-handler";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { response } from "../../utils/response";
 import environment from "../../constants/environment";
 
@@ -8,17 +8,19 @@ export const handleSamsAuthentication = expressAsyncHandler(
     try {
       const authToken = req.cookies["auth_token"];
 
-      const axiosResponse = await axios.post(`${environment.samsServiceUrl as string}/api/x-system/authenticate`, {}, { withCredentials: true, headers: {
-        Authorization: `Bearer ${authToken}`
+      const axiosResponse = await axios.post(`${environment.samsServiceUrl as string}/api/x-system/authenticate`, {}, { headers: {
+        Authorization: `Bearer ${authToken}`,
       } });
 
+      console.log(axiosResponse.status, 'AXIOS RESPONSE STATUS');
+
       if (axiosResponse.status === 200) {
-        res.cookie("auth_token", authToken, {
-          httpOnly: true,
+        res.cookie("auth_token", `${authToken}+TESTIFCAUGHT`, {
+          httpOnly: false,
           secure: environment.isProd ? true : false,
           sameSite: environment.isProd ? "none" : "lax",
           maxAge: 60 * 60 * 1000,
-        });
+        })
 
         return response(res, 200, true, "Authenticated!", {
           redirectUri: environment.samsClientUrl,
@@ -26,9 +28,8 @@ export const handleSamsAuthentication = expressAsyncHandler(
       } else {
         res.status(axiosResponse.status).send(axiosResponse.data);
       }
-    } catch (err) {
-      console.log(err);
-      response(res, 500, false, "Internal Server Error");
+    } catch (err: any) {
+      response(res, 500, false, err.response.data.message || "Internal server error");
     }
   }
 );

@@ -21,4 +21,9 @@ export class WebService {
   logout(){
     return this.http.post(`${this.serviceUrl}/auth/logout`, {}, { withCredentials: true });
   }
+
+  test(){
+    return this.http.get(`${this.serviceUrl}/test`, { withCredentials: true });
+
+  }
 }

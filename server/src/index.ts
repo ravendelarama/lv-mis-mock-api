@@ -48,6 +48,22 @@ app.get("/", (req, res) => {
   res.send("Hello Server!");
 });
 
+
+app.get('/test', (req, res) => {
+  const token = req.cookies['auth_token']
+
+  if (!token){
+    res.json({
+      message: "no token"
+    })
+    return 
+  }
+
+  res.json({
+    token
+  })
+})
+
 // app.get("/test", (req, res) => {
 //   const authToken = req.headers
 //   res.json({authToken});

@@ -21,8 +21,7 @@ export class PortalComponent {
       {
         name: 'Student Attendance Management System',
         description: 'This is System A',
-        logoUrl:
-          'https://placehold.co/600x400?text=SAMS',
+        logoUrl: 'https://placehold.co/600x400?text=SAMS',
         authenticationUrlSegment: 'sams-redirect',
       },
       {
@@ -75,7 +74,18 @@ export class PortalComponent {
     });
   }
 
-  signInWithGoogle(){
-    this.webService.signInWithGoogle()
+  signInWithGoogle() {
+    this.webService.signInWithGoogle();
+  }
+
+  test() {
+    this.webService.test().subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      },
+    });
   }
 }

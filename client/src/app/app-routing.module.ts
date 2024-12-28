@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { OauthRedirectComponent } from './pages/oauth-redirect/oauth-redirect.component';
 import { PortalComponent } from './pages/portal/portal.component';
+import { authGuard, guestGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,16 +13,18 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'auth/callback',
-    component: OauthRedirectComponent
+    component: OauthRedirectComponent,
   },
   {
     path: 'portal',
-    component: PortalComponent
-  }
+    component: PortalComponent,
+    canActivate: [guestGuard],
+  },
 ];
 
 @NgModule({

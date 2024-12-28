@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { WebService } from '../../services/web.service';
-import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'lv-oauth-redirect',
@@ -18,7 +18,7 @@ export class OauthRedirectComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private webService: WebService,
-    private userService: UserService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -40,13 +40,16 @@ export class OauthRedirectComponent implements OnInit, OnDestroy {
 
     this.webService.validateOauthToken(this.accessToken).subscribe({
       next: (res: any) => {
-        this.userService.setToken('portal-access-token', this.accessToken);
+        this.authService.setToken('portal-access-token', this.accessToken);
         setTimeout(() => {
           this.router.navigate(['/portal']);
         }, 1500);
       },
       error: (error) => {
         this.errorMessage = 'Invalid access token';
+        setTimeout(() => {
+          this.router.navigate(['/login'])
+        }, 3000);
       },
       complete: () => {
       },

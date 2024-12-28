@@ -12,11 +12,9 @@ export const handleSamsAuthentication = expressAsyncHandler(
         Authorization: `Bearer ${authToken}`,
       } });
 
-      console.log(axiosResponse.status, 'AXIOS RESPONSE STATUS');
-
       if (axiosResponse.status === 200) {
-        res.cookie("auth_token", `${authToken}+TESTIFCAUGHT`, {
-          httpOnly: false,
+        res.cookie("auth_token", authToken, {
+          httpOnly: true,
           secure: environment.isProd ? true : false,
           sameSite: environment.isProd ? "none" : "lax",
           maxAge: 60 * 60 * 1000,

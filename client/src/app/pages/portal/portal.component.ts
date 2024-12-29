@@ -57,7 +57,7 @@ export class PortalComponent {
     this.webService.xSystemRedirect(system.authenticationUrlSegment).subscribe({
       next: (res: any) => {
         console.log(res);
-        window.location.href = res.data.redirectUri;
+        window.location.href = res.redirectUri;
       },
       error: (error) => {
         console.error('Error:', error);

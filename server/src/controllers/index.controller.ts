@@ -22,7 +22,7 @@ export { getSelf, createUser } from './user.controller'
 
 export { getStrands, createStrand } from './strand.controller'
 
-export { getCollegePrograms, getCollegeProgramById } from './college-program.controller'
+export { getCollegePrograms, getCollegeProgramById, getCollegeStudentsByProgramId } from './college-program.controller'
 
 
 // Integrations

@@ -1,5 +1,4 @@
-export {
-} from "./college-student.controller";
+export {} from "./college-student.controller";
 
 export { getStudentInformationBySchoolId, createStudentInformation } from './student.controller'
 
@@ -23,5 +22,10 @@ export { getSelf, createUser } from './user.controller'
 
 export { getStrands, createStrand } from './strand.controller'
 
+export { getCollegePrograms } from './college-program.controller'
+
+
+// Integrations
 export { handleSamsAuthentication } from "./student-attendance-management-system/sams.controller";
+
 export {} from "./grading-management-system";

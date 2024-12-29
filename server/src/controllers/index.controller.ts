@@ -22,8 +22,9 @@ export { getSelf, createUser } from './user.controller'
 
 export { getStrands, createStrand } from './strand.controller'
 
-export { getCollegePrograms } from './college-program.controller'
+export { getCollegePrograms, getCollegeProgramById, getCollegeStudentsByProgramId, getCollegeSectionsByProgramId } from './college-program.controller'
 
+export { getCollegeSections, getCollegeSectionById, getCollegeStudentsBySectionId } from './college-section.controller'
 
 // Integrations
 export { handleSamsAuthentication } from "./student-attendance-management-system/sams.controller";

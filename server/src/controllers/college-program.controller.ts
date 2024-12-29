@@ -25,3 +25,23 @@ export const getCollegePrograms = expressAsyncHandler(async (req, res) => {
         response(res, 500, false, "Internal Server Error", null);
     }
 });
+
+
+export const getCollegeProgramById = expressAsyncHandler(async (req, res) => {
+  try {
+    const { programId } = req.params;
+    const program = await db.collegeProgram.findFirst({
+      where: {
+        id: programId,
+      },
+    });
+
+    if (!program) {
+      return response(res, 404, false, "Program not found", null);
+    }
+
+    response(res, 200, true, null, { program });
+  } catch (e) {
+    response(res, 500, false, "Internal Server Error", null);
+  }
+});

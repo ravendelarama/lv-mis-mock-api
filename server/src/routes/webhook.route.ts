@@ -1,5 +1,5 @@
 import express from "express";
-import { handleReferralEvent, verifyMetaMessengerWebhook } from "../controllers";
+import { handleReferralEvent, verifyMetaMessengerWebhook } from "../controllers/index.controller";
 
 const router = express.Router();
 

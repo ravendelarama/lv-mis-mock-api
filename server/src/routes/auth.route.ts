@@ -1,7 +1,7 @@
 import express from "express";
 import passport from '../config/passport-config'
-import { handleGoogleCallback } from "../controllers";
-import { logout } from "../controllers/auth";
+import { handleGoogleCallback } from "../controllers/index.controller";
+import { logout, validateOAuthToken } from "../controllers/auth.controller";
 import environment from "../constants/environment";
 
 const router = express.Router();
@@ -11,8 +11,9 @@ router.get("/google", passport.authenticate('google', {scope: ['profile', 'email
 
 router.get("/google/callback", passport.authenticate('google', { session: false, failureRedirect: redirectUri }), handleGoogleCallback);
 
-router.post('/logout', logout)
+router.post('/token/validate', validateOAuthToken)
 
+router.post('/logout', logout)
 
 export default router;
 

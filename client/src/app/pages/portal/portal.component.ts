@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { WebService } from '../../services/web.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 interface System {
   name: string;
@@ -16,13 +18,12 @@ interface System {
 export class PortalComponent {
   systems: System[] = [];
 
-  constructor(private webService: WebService) {
+  constructor(private webService: WebService, private authService: AuthService, private router: Router) {
     this.systems = [
       {
         name: 'Student Attendance Management System',
         description: 'This is System A',
-        logoUrl:
-          'https://placehold.co/600x400?text=SAMS',
+        logoUrl: 'https://placehold.co/600x400?text=SAMS',
         authenticationUrlSegment: 'sams-redirect',
       },
       {
@@ -56,7 +57,7 @@ export class PortalComponent {
     this.webService.xSystemRedirect(system.authenticationUrlSegment).subscribe({
       next: (res: any) => {
         console.log(res);
-        window.location.href = res.data.redirectUri;
+        window.location.href = res.redirectUri;
       },
       error: (error) => {
         console.error('Error:', error);
@@ -65,7 +66,17 @@ export class PortalComponent {
   }
 
   logout() {
-    this.webService.logout().subscribe({
+    this.authService.removeToken("portal-access-token")
+    this.router.navigate(['/']);
+  }
+
+  signInWithGoogle() {
+    this.webService.signInWithGoogle();
+  }
+
+
+  testFromSams(){
+    this.webService.testFromSams().subscribe({
       next: (res: any) => {
         console.log(res);
       },
@@ -73,9 +84,5 @@ export class PortalComponent {
         console.error('Error:', error);
       },
     });
-  }
-
-  signInWithGoogle(){
-    this.webService.signInWithGoogle()
   }
 }

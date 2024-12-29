@@ -1,5 +1,5 @@
 import express from "express";
-import { handleSamsAuthentication } from "../../controllers";
+import { handleSamsAuthentication } from "../../controllers/index.controller";
 
 const router = express.Router();
 

@@ -16,6 +16,7 @@ export const isAuthenticated = expressAsyncHandler(
     let token: string | undefined;
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+      console.log(req.headers.authorization, 'LN 19')
         try {
             token = req.headers.authorization.split(' ')[1];
             const decoded = jwt.verify(token, environment.accessTokenSecret as string) as DecodedToken

@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import express from "express";
 import http from "http";
 import { awakeServer } from "./jobs";
-import { authRouter, instructorRouter, studentRouter, collegeSubjectRouter, gmsRouter, samsRouter, userRouter, webhookRouter, strandRouter, collegeProgramRouter } from "./routes/index.route";
+import { authRouter, instructorRouter, studentRouter, collegeSubjectRouter, gmsRouter, samsRouter, userRouter, webhookRouter, strandRouter, collegeProgramRouter, collegeSectionRouter } from "./routes/index.route";
 import corsOptions from "./config/cors-config";
 import environment from "./constants/environment";
 
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 
 // routers
-app.use("/api/v1/college", collegeSubjectRouter, collegeProgramRouter);
+app.use("/api/v1/college", collegeSubjectRouter, collegeProgramRouter, collegeSectionRouter);
 app.use('/api/v1/students', studentRouter)
 app.use('/api/v1/instructors', instructorRouter)
 app.use("/api/v1/users", userRouter);

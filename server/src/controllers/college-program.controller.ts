@@ -26,7 +26,6 @@ export const getCollegePrograms = expressAsyncHandler(async (req, res) => {
     }
 });
 
-
 export const getCollegeProgramById = expressAsyncHandler(async (req, res) => {
   try {
     const { programId } = req.params;
@@ -72,6 +71,38 @@ export const getCollegeStudentsByProgramId = expressAsyncHandler(
           take,
           skip,
           count: studentsEnrolledInProgram.length,
+        },
+      });
+    } catch (e) {
+      response(res, 500, false, "Internal Server Error", null);
+    }
+  }
+);
+
+export const getCollegeSectionsByProgramId = expressAsyncHandler(
+  async (req, res) => {
+    try {
+      const { programId } = req.params;
+      const take = req.query.take ? Number(req.query.take) : 10;
+      const page = req.query.page ? Number(req.query.page) : 1;
+      const skip = (page - 1) * take || 0;
+
+      const sectionsUnderProgram = await db.collegeSection.findMany({
+        where: {
+          program: {
+            id: programId,
+          },
+        },
+        skip,
+        take,
+      });
+
+      response(res, 200, true, null, { sections: sectionsUnderProgram }, {
+        pagination: {
+          page,
+          take,
+          skip,
+          count: sectionsUnderProgram.length,
         },
       });
     } catch (e) {

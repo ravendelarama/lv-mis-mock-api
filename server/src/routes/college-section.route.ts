@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { getCollegeSections } from "../controllers/index.controller";
+import { getCollegeSectionById, getCollegeSections } from "../controllers/index.controller";
 
 const router = Router();
 
 router.get("/sections", getCollegeSections)
 
-// router.get("/sections/:sectionId", )
+router.get("/sections/:sectionId", getCollegeSectionById)
 
 router.post('/sections', (req, res) => {
     res.status(201).json({

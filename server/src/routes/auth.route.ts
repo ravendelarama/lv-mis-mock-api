@@ -1,7 +1,7 @@
 import express from "express";
 import passport from '../config/passport-config'
-import { handleGoogleCallback } from "../controllers";
-import { logout, validateOAuthToken } from "../controllers/auth";
+import { handleGoogleCallback } from "../controllers/index.controller";
+import { logout, validateOAuthToken } from "../controllers/auth.controller";
 import environment from "../constants/environment";
 
 const router = express.Router();

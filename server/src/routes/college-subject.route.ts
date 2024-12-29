@@ -5,7 +5,7 @@ import {
   getCollegeStudentsBySubjectId,
   getCollegeSubjectById,
   getCollegeSubjects,
-} from "../controllers";
+} from "../controllers/index.controller";
 
 const router = Router();
 

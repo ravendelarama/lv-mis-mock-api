@@ -15,7 +15,7 @@ import {
   userRouter,
   webhookRouter,
   strandRouter,
-} from "./routes";
+} from "./routes/index.route";
 import corsOptions from "./config/cors-config";
 import environment from "./constants/environment";
 

@@ -8,6 +8,7 @@ export {
   getCollegeStudentsBySubjectId,
   getCollegeSectionsBySubjectId,
   getCollegeInstructorBySubjectId,
+  getCollegeSubjectsByInstructorId
 } from "./college-subject.controller";
 
 export {

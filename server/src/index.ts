@@ -8,6 +8,7 @@ import { awakeServer } from "./jobs";
 import { authRouter, instructorRouter, studentRouter, collegeSubjectRouter, gmsRouter, samsRouter, userRouter, webhookRouter, strandRouter, collegeProgramRouter, collegeSectionRouter } from "./routes/index.route";
 import corsOptions from "./config/cors-config";
 import environment from "./constants/environment";
+import { db } from "./models";
 
 dotenv.config();
 
@@ -36,18 +37,30 @@ app.get("/", (req, res) => {
 
 console.log(environment.isProd, 'IS PROD?!')
 
-app.get('/test', (req, res) => {
-  const token = req.cookies['auth_token']
-
-  if (!token){
-    res.json({
-      message: "no token"
-    })
-    return 
-  }
+app.get('/truncate-all', async (req, res) => {
+  // await db.collegeInstructorSubject.deleteMany({})
+  // await db.collegeStudentProgram.deleteMany({})
+  await db.collegeStudentSection.deleteMany({})
+  // await db.collegeStudentSubject.deleteMany({}) 
+  // await db.collegeSubjectSection.deleteMany({})
 
   res.json({
-    token
+    message: "All collections have been truncated successfully."
+  })
+
+})
+
+app.get('/test', async (req, res) => {
+  const docs = await db.collegeStudentSection.findMany({
+    include: {
+      collegeSection: true, 
+      student: true
+    }
+  })
+
+  res.json({
+    message: "Test successful.",
+    data: docs
   })
 })
 

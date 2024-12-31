@@ -14,14 +14,21 @@ export const getCollegeSubjects = expressAsyncHandler(async (req, res) => {
       take,
     });
 
-    response(res, 200, true, null, { subjects }, {
-      pagination: {
-        page,
-        take,
-        skip,
-        count: subjects.length,
-      },
-    });
+    response(
+      res,
+      200,
+      true,
+      null,
+      { subjects },
+      {
+        pagination: {
+          page,
+          take,
+          skip,
+          count: subjects.length,
+        },
+      }
+    );
   } catch {
     response(res, 500, false, "Internal Server Error", null);
   }
@@ -66,14 +73,21 @@ export const getCollegeStudentsBySubjectId = expressAsyncHandler(
         take,
       });
 
-      response(res, 200, true, null, { students: studentsTakingSubject}, {
-        pagination: {
-          page,
-          take,
-          skip,
-          count: studentsTakingSubject.length,
-        },
-      });
+      response(
+        res,
+        200,
+        true,
+        null,
+        { students: studentsTakingSubject },
+        {
+          pagination: {
+            page,
+            take,
+            skip,
+            count: studentsTakingSubject.length,
+          },
+        }
+      );
     } catch (e) {
       response(res, 500, false, "Internal Server Error", null);
     }
@@ -100,14 +114,21 @@ export const getCollegeSectionsBySubjectId = expressAsyncHandler(
         take,
       });
 
-      response(res, 200, true, null, { sections: sectionsTakingSubject }, {
-        pagination: {
-          page,
-          take,
-          skip,
-          count: sectionsTakingSubject.length,
-        },
-      });
+      response(
+        res,
+        200,
+        true,
+        null,
+        { sections: sectionsTakingSubject },
+        {
+          pagination: {
+            page,
+            take,
+            skip,
+            count: sectionsTakingSubject.length,
+          },
+        }
+      );
     } catch (e) {
       response(res, 500, false, "Internal Server Error", null);
     }
@@ -149,6 +170,81 @@ export const getCollegeInstructorBySubjectId = expressAsyncHandler(
       }
       response(res, 200, true, null, { instructor });
     } catch (e) {
+      response(res, 500, false, "Internal Server Error", null);
+    }
+  }
+);
+
+export const getCollegeSubjectsByInstructorId = expressAsyncHandler(
+  async (req, res) => {
+    try {
+      const { instructorId } = req.params;
+
+      if (!instructorId) {
+        return response(
+          res,
+          400,
+          false,
+          "Invalid request parameters. Contact dev team.",
+          null
+        );
+      }
+
+      //Wednesday, 10:30 AM - 12:00 PM | Ethics (ETH301)
+      // Thursday, 8:30 AM - 10:00 AM | Ethics (ETH301)
+
+      // const subjectsHandled = await db.collegeInstructorSubject.findMany({
+      //   select: {
+      //     id: true,
+      //     schedule: true,
+      //     startTime: true,
+      //     endTime: true,
+      //     subject: {
+      //       select: {
+      //         id: true,
+      //         title: true,
+      //         code: true,
+      //         description: true,
+      //         unit: true
+      //       }
+      //     }
+      //   },
+      //   where:{
+      //     instructorId
+      //   },
+      // })
+
+      //     Ethics (ETH301)
+      // - Wednesday, 10:30 AM - 12:00 PM
+      // - Thursday, 8:30 AM - 10:00 AM
+      const subjectsHandled = await db.collegeSubject.findMany({
+        where: {
+          instructorSubjects: {
+            some: {
+              instructorId,
+            },
+          },
+        },
+        select: {
+          id: true,
+          title: true,
+          code: true,
+          description: true,
+          unit: true,
+          instructorSubjects: {
+            select: {
+              id: true,
+              startTime: true,
+              endTime: true,
+              schedule: true,
+            },
+          },
+        },
+      });
+
+      response(res, 200, true, null, { subjects: subjectsHandled });
+    } catch (e) {
+      console.log(e);
       response(res, 500, false, "Internal Server Error", null);
     }
   }

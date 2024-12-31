@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createInstructor} from "../controllers/index.controller";
+import { createInstructor, getCollegeSubjectsByInstructorId} from "../controllers/index.controller";
 
 const router = Router();
 
@@ -12,5 +12,7 @@ const router = Router();
 
 
 router.post('/create', createInstructor)
+
+router.get('/:instructorId/subjects', getCollegeSubjectsByInstructorId)
 
 export default router;

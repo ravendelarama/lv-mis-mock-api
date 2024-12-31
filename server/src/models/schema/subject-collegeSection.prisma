@@ -2,10 +2,6 @@ model CollegeSubjectSection {
     id        String    @id @default(auto()) @map("_id") @db.ObjectId
     subjectId String    @db.ObjectId
     sectionId String    @db.ObjectId
-    unit      Int
-    major     Boolean
-    startTime DateTime
-    endTime   DateTime
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
     deletedAt DateTime?

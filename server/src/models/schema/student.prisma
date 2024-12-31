@@ -15,7 +15,7 @@ model Student {
     deletedAt     DateTime?
 
     // Relations
-    programs               CollegeStudentProgram[]
+    collegeProgram               CollegeStudentProgram[]
     collegeSections CollegeStudentSection[]
     collegeSubjects CollegeStudentSubject[]
     basicEdSubjects BasicEdStudentSection[]

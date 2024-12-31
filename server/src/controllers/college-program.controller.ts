@@ -55,7 +55,7 @@ export const getCollegeStudentsByProgramId = expressAsyncHandler(
 
       const studentsEnrolledInProgram = await db.student.findMany({
         where: {
-          programs: {
+          collegeProgram: {
             some: {
               programId,
             },

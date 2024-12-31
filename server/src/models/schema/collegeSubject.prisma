@@ -3,6 +3,7 @@ model CollegeSubject {
     title       String
     code        String
     description String
+    unit        Int
     createdAt   DateTime  @default(now())
     updatedAt   DateTime  @updatedAt
     deletedAt   DateTime?
@@ -11,7 +12,6 @@ model CollegeSubject {
     instructorSubjects CollegeInstructorSubject[]
     students           CollegeStudentSubject[]
     collegeSections    CollegeSubjectSection[]
-    collegeSchedules   CollegeSubjectSchedule[]
 
     @@map("college_subjects")
 }
